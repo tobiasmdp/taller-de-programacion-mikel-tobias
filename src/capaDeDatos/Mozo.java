@@ -14,8 +14,8 @@ public class Mozo extends Persona {
 		super(id, nombreApellido, nacimiento);
 		this.cantHijos = cantHijos;
 		this.estado = "Activo"; //“Activo”, “De franco”, “Ausente”
-		this.acumulados = 0; // acumulacion de ventas propias
-		this.sueldo = Sistema.getInstance().calcularSueldo(); //no es lo mismo que get sueldo, sino que calcula en sueldo con los hijos tmb
+		this.acumulados = 0; // acumulacion de ventas totales  
+		this.sueldo = Sistema.getInstance().getSueldo() * (1 + (float)0.05 * cantHijos); 
 	}
 
 	public String getEstado() {

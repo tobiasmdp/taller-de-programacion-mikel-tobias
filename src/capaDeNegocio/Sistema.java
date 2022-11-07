@@ -10,10 +10,10 @@ import capaDeDatos.Producto;
 public class Sistema {
 	
 	private static Sistema instance = null;
-	final private int prefijoOperario = 10000;
-	final private int prefijoMozo = 20000;
-	final private int prefijoMesa = 30000;
-	final private int prefijoProducto = 40000;
+	public static final int prefijoOperario = 10000;
+	public static final int prefijoMozo = 20000;
+	public static final int prefijoMesa = 30000;
+	public static final int prefijoProducto = 40000;
 	
 
 	
@@ -22,22 +22,6 @@ public class Sistema {
 			Sistema.instance = new Sistema();
 		}
 		return instance;
-	}
-
-	public int getPrefijoOperario() {
-		return prefijoOperario;
-	}
-
-	public int getPrefijoMozo() {
-		return prefijoMozo;
-	}
-
-	public int getPrefijoMesa() {
-		return prefijoMesa;
-	}
-
-	public int getPrefijoProducto() {
-		return prefijoProducto;
 	}
 
 	public ArrayList<Mozo> getMozos() {
@@ -58,6 +42,11 @@ public class Sistema {
 	public ArrayList<Producto> getProductos() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public float getSueldo() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

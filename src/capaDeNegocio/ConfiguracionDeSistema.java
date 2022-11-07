@@ -21,7 +21,7 @@ public abstract class ConfiguracionDeSistema {
 		Mesa mesa;
 		ArrayList<Mesa> mesas = Sistema.getInstance().getMesas();
 		if (mesas.isEmpty()) {
-			id = Sistema.getInstance().getPrefijoMesa();
+			id = Sistema.prefijoMesa;
 		}
 		else {
 			id = mesas.get(mesas.size()-1).getId() + 1;
@@ -60,7 +60,7 @@ public abstract class ConfiguracionDeSistema {
 		Producto producto;
 		ArrayList<Producto> productos = Sistema.getInstance().getProductos();
 		if (productos.isEmpty()) {
-			id = Sistema.getInstance().getPrefijoProducto();
+			id = Sistema.prefijoProducto;
 		}
 		else {
 			id = productos.get(productos.size()-1).getId() + 1;

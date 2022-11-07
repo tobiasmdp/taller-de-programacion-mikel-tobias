@@ -12,7 +12,7 @@ public abstract class GestionDePersonal {
 		int id;
 		ArrayList<Operario> operarios = Sistema.getInstance().getOperarios();
 		if (operarios.isEmpty()) {
-			id = Sistema.getInstance().getPrefijoOperario();
+			id = Sistema.prefijoOperario;
 		}
 		else {
 			id = operarios.get(operarios.size()-1).getId() + 1;
@@ -51,7 +51,7 @@ public abstract class GestionDePersonal {
 		int id;
 		ArrayList<Mozo> mozos = Sistema.getInstance().getMozos();
 		if (mozos.isEmpty()) {
-			id = Sistema.getInstance().getPrefijoMozo();
+			id = Sistema.prefijoMozo;
 		}
 		else{
 			id = mozos.get(mozos.size()-1).getId() + 1;
