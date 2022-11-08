@@ -89,21 +89,28 @@ public float getSueldo() {
 	return 0;
 }
 
+
+public void Login(String nombreUsuario, String contra) {
+int i=0;
+while (i < operarios.size() && !(operarios.get(i).getNombreUsuario().equals(nombreUsuario)))
+	i++;
+if (i < operarios.size() && operarios.get(i).getNombreUsuario().equals(nombreUsuario)) // agrego a logeado
+	if (operarios.get(i).getPassword().equals(contra)) {
+		operariosLogeados.add(operarios.get(i));
+	} else
+		throw new ContraException("la contrase�a ingresada no es la correcta", contra);
+else {
+	i = 0;
+	while (i < operariosAdmin.size() && !(operariosAdmin.get(i).getNombreUsuario().equals(nombreUsuario)))
+		i++;
+	if (i < operariosAdmin.size() && operariosAdmin.get(i).getNombreUsuario().equals(nombreUsuario)) // agrego a logeado
+		if (operariosAdmin.get(i).getPassword().equals(contra)) {
+			operariosLogeados.add(operariosAdmin.get(i));
+		} else
+			throw new ContraException("la contrase�a ingresada no es la correcta", contra);
+
+public void Logout (Operario operario) {
+	operariosLogeados.remove(operario);
 }
-
-public Operario Login(String nombreUsuario, String password) {
-	if (!operarios.getNombreUsuario().equals(nombreUsuario) || !operariosAdmin.getNombreUsuario().equals(nombreUsuario)) { // busco por user en operario y admin
-		if()// si la contraseña esta mal, mando excepcion
-		else
-			// si esta todo bien, cambio el estado del operario a logeado;
-	} // si no encuentro es que el user no existe/es incorrecto
-	
-}
-
-public Operario Logout (Operario operario) {
-	
-}
-
-
 
 }
