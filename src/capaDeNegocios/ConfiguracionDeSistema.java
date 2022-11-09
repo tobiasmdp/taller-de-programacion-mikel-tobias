@@ -1,7 +1,7 @@
 /**
  * 
  */
-package capaDeNegocio;
+package capaDeNegocios;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -14,24 +14,34 @@ import capaDeDatos.Producto;
  * @author tobia
  *
  */
-public abstract class ConfiguracionDeSistema {
+public class ConfiguracionDeSistema {
+
+	private static ConfiguracionDeSistema instance=null;
+	
+	private ConfiguracionDeSistema () {}
+
+	public static ConfiguracionDeSistema getInstance() { // Singelton
+		if (instance==null) 
+			instance=new ConfiguracionDeSistema();
+		return instance;
+	}
 	
 	public void altaMesa() {
 		int id;
 		Mesa mesa;
-		ArrayList<Mesa> mesas = Sistema.getInstance().getMesas();
+		ArrayList<Mesa> mesas = Local.getInstance().getMesas();
 		if (mesas.isEmpty()) {
-			id = Sistema.prefijoMesa;
+			id = Local.prefijoMesa;
 		}
 		else {
 			id = mesas.get(mesas.size()-1).getId() + 1;
 		}
 		mesa = new Mesa(id);
-		Sistema.getInstance().getMesas().add(mesa);
+		Local.getInstance().getMesas().add(mesa);
 	}
 	
 	public void bajaMesa(Mesa mesa) {
-		Sistema.getInstance().getMesas().remove(mesa);
+		Local.getInstance().getMesas().remove(mesa);
 	}
 	
 	public void modificaMesa(Mesa mesa, String accion, int valor) {
@@ -58,19 +68,19 @@ public abstract class ConfiguracionDeSistema {
 	public void altaProducto(int stock, String nombre, float precioCosto, float precioVenta) {
 		int id;
 		Producto producto;
-		ArrayList<Producto> productos = Sistema.getInstance().getProductos();
+		ArrayList<Producto> productos = Local.getInstance().getProductos();
 		if (productos.isEmpty()) {
-			id = Sistema.prefijoProducto;
+			id = Local.prefijoProducto;
 		}
 		else {
 			id = productos.get(productos.size()-1).getId() + 1;
 		}
 		producto = new Producto(id, stock, nombre, precioCosto, precioVenta);
-		Sistema.getInstance().getProductos().add(producto);
+		Local.getInstance().getProductos().add(producto);
 	}
 	
 	public void bajaProductos(Producto producto) {
-		Sistema.getInstance().getProductos().remove(producto);
+		Local.getInstance().getProductos().remove(producto);
 	}
 	
 	public void modificaProducto(Producto producto, String accion, int valor) {

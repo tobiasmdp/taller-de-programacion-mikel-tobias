@@ -2,7 +2,7 @@ package capaDeDatos;
 
 import java.util.Calendar;
 
-import capaDeNegocio.Sistema;
+import capaDeNegocios.Local;
 
 public class Mozo extends Persona {
 	private int cantHijos;
@@ -13,9 +13,9 @@ public class Mozo extends Persona {
 	public Mozo(int id, String nombreApellido, Calendar nacimiento, int cantHijos) {
 		super(id, nombreApellido, nacimiento);
 		this.cantHijos = cantHijos;
-		this.estado = "Activo"; //“Activo”, “De franco”, “Ausente”
+		this.estado = "Activo"; //ï¿½Activoï¿½, ï¿½De francoï¿½, ï¿½Ausenteï¿½
 		this.acumulados = 0; // acumulacion de ventas totales  
-		this.sueldo = Sistema.getInstance().getSueldo() * (1 + (float)0.05 * cantHijos); 
+		this.sueldo = Local.getInstance().getSueldoMin() * (1 + (float)0.05 * cantHijos); 
 	}
 
 	public String getEstado() {

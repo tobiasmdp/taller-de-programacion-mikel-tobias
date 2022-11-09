@@ -1,4 +1,4 @@
-package capaDeNegocio;
+package capaDeNegocios;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -6,23 +6,32 @@ import java.util.Calendar;
 import capaDeDatos.Operario;
 import capaDeDatos.Mozo;
 
-public abstract class GestionDePersonal {
+public class GestionDePersonal {
 
+private static GestionDePersonal instance=null;
+	
+	private GestionDePersonal () {}
+
+	public static GestionDePersonal getInstance() { // Singelton
+		if (instance==null) 
+			instance=new GestionDePersonal();
+		return instance;
+	}
+	
 	public void altaOperario(String nombreApellido, Calendar nacimiento, String nombreUsuario, String password) {
 		int id;
-		ArrayList<Operario> operarios = Sistema.getInstance().getOperarios();
+		ArrayList<Operario> operarios = Local.getInstance().getOperarios();
 		if (operarios.isEmpty()) {
-			id = Sistema.prefijoOperario;
+			id = Local.prefijoOperario;
 		}
 		else {
 			id = operarios.get(operarios.size()-1).getId() + 1;
 		}
 		Operario operario = new Operario(id, nombreApellido, nacimiento, nombreUsuario, password);
-		Sistema.getInstance().getOperarios().add(operario);
+		Local.getInstance().getOperarios().add(operario);
 	}
 
 	public void bajaOperario(Operario operario) {
-		Sistema.getInstance().getOperarios().remove(operario);
 	}
 
 	public void modificaOperario(Operario operario, String accion, String valor) {
@@ -49,19 +58,19 @@ public abstract class GestionDePersonal {
 
 	public void altaMozo(String nombreApellido, Calendar nacimiento, int cantHijos) {
 		int id;
-		ArrayList<Mozo> mozos = Sistema.getInstance().getMozos();
+		ArrayList<Mozo> mozos = Local.getInstance().getMozos();
 		if (mozos.isEmpty()) {
-			id = Sistema.prefijoMozo;
+			id = Local.prefijoMozo;
 		}
 		else{
 			id = mozos.get(mozos.size()-1).getId() + 1;
 		}
 		Mozo mozo = new Mozo(id, nombreApellido, nacimiento, cantHijos);
-		Sistema.getInstance().getMozos().add(mozo);
+		Local.getInstance().getMozos().add(mozo);
 	}
 
 	public void bajaMozo(Mozo mozo) {
-		Sistema.getInstance().getMozos().remove(mozo);
+		Local.getInstance().getMozos().remove(mozo);
 	}
 	
 	public void modificaMozo(Mozo mozo, String accion, String valor) {
