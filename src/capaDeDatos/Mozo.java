@@ -15,7 +15,7 @@ public class Mozo extends Persona {
 		this.cantHijos = cantHijos;
 		this.estado = "Activo"; //�Activo�, �De franco�, �Ausente�
 		this.acumulados = 0; // acumulacion de ventas totales  
-		this.sueldo = Local.getInstance().getSueldoMin() * (1 + (float)0.05 * cantHijos); 
+		this.sueldo = Local.getInstance().getSueldo() * (1 + (float)0.05 * cantHijos); 
 	}
 
 	public String getEstado() {
