@@ -1,6 +1,7 @@
 package capaDeNegocios;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 import capaDeDatos.Comanda;
 import capaDeDatos.LocalDatos;
@@ -11,8 +12,10 @@ import capaDeDatos.OperarioAdministrador;
 import capaDeDatos.Producto;
 import capaDeDatos.PromocionProducto;
 import capaDeDatos.PromocionTemporal;
+import controlador.ControladorLogin;
 
-public class Local {
+@SuppressWarnings("deprecation")
+public class Local extends Observable{
 private static Local instance= null;
 public static final int prefijoOperario = 10000;
 public static final int prefijoMozo = 20000;
@@ -28,7 +31,6 @@ public ArrayList <PromocionProducto> promocionesProductos = new ArrayList<Promoc
 public ArrayList <PromocionTemporal> promocionesTemporales = new ArrayList <PromocionTemporal>();
 public ArrayList <Operario> operarios = new ArrayList<Operario>();
 public ArrayList <OperarioAdministrador> operariosAdmin = new ArrayList<OperarioAdministrador>();
-public ArrayList <Operario> operariosLogeados= new ArrayList<Operario>();
 public ArrayList <Comanda> comandasActivas= new ArrayList<Comanda>();
 private GestionDePersonal zonaPersonal;
 private MetodosFacturacion zonaFacturacion;
@@ -89,28 +91,31 @@ public float getSueldo() {
 	return 0;
 }
 
-
-public void Login(String nombreUsuario, String contra) {
-int i=0;
-while (i < operarios.size() && !(operarios.get(i).getNombreUsuario().equals(nombreUsuario)))
-	i++;
-if (i < operarios.size() && operarios.get(i).getNombreUsuario().equals(nombreUsuario)) // agrego a logeado
-	if (operarios.get(i).getPassword().equals(contra)) {
-		operariosLogeados.add(operarios.get(i));
-	} else
-		throw new ContraException("la contrase�a ingresada no es la correcta", contra);
-else {
-	i = 0;
-	while (i < operariosAdmin.size() && !(operariosAdmin.get(i).getNombreUsuario().equals(nombreUsuario)))
+public void login(String nombreUsuario, String contra) {
+	int i=0;
+	while (i < operarios.size() && !(operarios.get(i).getNombreUsuario().equals(nombreUsuario)))
 		i++;
-	if (i < operariosAdmin.size() && operariosAdmin.get(i).getNombreUsuario().equals(nombreUsuario)) // agrego a logeado
-		if (operariosAdmin.get(i).getPassword().equals(contra)) {
-			operariosLogeados.add(operariosAdmin.get(i));
-		} else
-			throw new ContraException("la contrase�a ingresada no es la correcta", contra);
+	this.setChanged();
+	if (i < operarios.size()) {
+		
+		if(operarios.get(i).getPassword().equals(contra)) {
+			this.notifyObservers("PASSWORD CORRECTA");
+		}
+		else {
+			this.notifyObservers("PASSWORD INCORRECTA");
+		}
+	}
+	else {
+		notifyObservers("USER INCORRECTO");
+	}
+}
 
 public void Logout (Operario operario) {
-	operariosLogeados.remove(operario);
+}
+
+public void addObserver(ControladorLogin controladorLogin) {
+	// TODO Auto-generated method stub
+	
 }
 
 }
