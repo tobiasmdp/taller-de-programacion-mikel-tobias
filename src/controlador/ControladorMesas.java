@@ -32,7 +32,18 @@ public class ControladorMesas implements ActionListener, Observer{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String comando=e.getActionCommand();
-		if (comando.equals("VOLVER")) {
+		if (comando.equals("NUEVA")) {
+			this.vista.esconder();
+			ControladorMesasNueva controladorNuevaMesa = new ControladorMesasNueva();
+		}
+		else if (comando.equals("MODIFICAR")) {
+			this.vista.esconder();
+			//ControladorMesaModificar controladorModificarMesa = new ControladorMesaModificar();
+		}else if (comando.equals("ELIMINAR")) {
+			this.vista.esconder();
+			//ControladorMesaEliminar controladorModificarMesa = new ControladorMesaEliminar();
+		}
+		else if (comando.equals("VOLVER")) {
 			this.vista.esconder();
 			ControladorOperarioAdmin controladorOperarioadmin = new ControladorOperarioAdmin();
 		}

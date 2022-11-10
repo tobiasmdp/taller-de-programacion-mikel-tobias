@@ -29,12 +29,15 @@ public class VentanaMesas extends JFrame implements IVista{
 		contentPane.setLayout(new GridLayout(2, 2, 0, 0));
 		
 		btnNuevaMesa = new JButton("Nueva Mesa");
+		this.btnNuevaMesa.setActionCommand("NUEVA");
 		contentPane.add(btnNuevaMesa);
 		
 		btnModificaMesa = new JButton("Modificar Mesa");
+		this.btnModificaMesa.setActionCommand("MODIFICAR");
 		contentPane.add(btnModificaMesa);
 		
 		btnEliminarMesa = new JButton("Elminar Mesa");
+		this.btnEliminarMesa.setActionCommand("ELIMINAR");
 		contentPane.add(btnEliminarMesa);
 		
 		panel = new JPanel();
@@ -49,19 +52,20 @@ public class VentanaMesas extends JFrame implements IVista{
 
 	@Override
 	public void setActionListener(ActionListener actionListener) {
+		this.btnNuevaMesa.addActionListener(actionListener);
+		this.btnModificaMesa.addActionListener(actionListener);
+		this.btnEliminarMesa.addActionListener(actionListener);
 		this.btnVolver.addActionListener(actionListener);
 	}
 
 	@Override
 	public void esconder() {
-		// TODO Auto-generated method stub
-		
+		this.setVisible(false);
 	}
 
 	@Override
 	public void mostrar() {
-		// TODO Auto-generated method stub
-		
+		this.setVisible(true);		
 	}
 
 }

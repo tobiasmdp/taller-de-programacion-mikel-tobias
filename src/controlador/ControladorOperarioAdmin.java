@@ -57,7 +57,7 @@ public class ControladorOperarioAdmin implements ActionListener, Observer {
 		}
 		else if (comando.equals("OPERARIOSABM")) {
 			this.vista.esconder();
-			ControladorOperariosABM controladorOperariosABM= new ControladorOperariosABM();
+			//ControladorOperariosABM controladorOperariosABM= new ControladorOperariosABM();
 		}
 		else if (comando.equals("MESAS")) {
 			this.vista.esconder();
@@ -65,19 +65,19 @@ public class ControladorOperarioAdmin implements ActionListener, Observer {
 		}
 		else if (comando.equals("PRODUCTOS")) {
 			this.vista.esconder();
-			ControladorProductos controladorProductos = new ControladorProductos();
+			//ControladorProductos controladorProductos = new ControladorProductos();
 		}
 		else if(comando.equals("MOZOS")) {
 			this.vista.esconder();
-			ControladorMozos controladorMozos = new ControladorMozos();
+			//ControladorMozos controladorMozos = new ControladorMozos();
 		}
 		else if (comando.equals("PROMOCION PRODUCTO")) {
 			this.vista.esconder();
-			ControladorPromocionProducto controladorPromocionProducto = new ControladorPromocionProducto();
+			//ControladorPromocionProducto controladorPromocionProducto = new ControladorPromocionProducto();
 		}
 		else if (comando.equals("PROMOCION TEMPORAL")) {
 			this.vista.esconder();
-			ControladorPromocionTemporal controladorPromocionTemporal = new ControladorPromocionTemporal();
+			//ControladorPromocionTemporal controladorPromocionTemporal = new ControladorPromocionTemporal();
 		}
 		else if (comando.equals("VOLVER")) {
 			this.vista.esconder();
