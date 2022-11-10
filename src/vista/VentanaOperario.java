@@ -57,10 +57,12 @@ public class VentanaOperario extends JFrame implements IVista{
 	/**
 	 * Create the frame.
 	 */
-	public VentanaOperario() {
+	public VentanaOperario(boolean esAdmin) {
 		
 		mesas.addAll(Local.getInstance().getMesas());
 		facturas.addAll(Local.getInstance().getFacturas());
+		
+		setBounds(100, 100, 800, 700);
 		
 		getContentPane().setLayout(new GridLayout(2, 2, 0, 0));
 		
@@ -106,6 +108,7 @@ public class VentanaOperario extends JFrame implements IVista{
 		btnAdmin = new JButton("Administrador");
 		panelAdministrador.add(btnAdmin);
 		btnAdmin.setActionCommand("ADMINISTRADOR");
+		this.btnAdmin.setEnabled(esAdmin); // si no es admin no muestra el boton administrador
 		
 		this.setVisible(true);
 	}

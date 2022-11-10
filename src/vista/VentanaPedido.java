@@ -41,14 +41,18 @@ public class VentanaPedido extends JFrame implements IVista{
 	private JPanel panelBotones;
 	private JList list;
 	private JLabel lblCantidad;
-	private JTextField txtTexto;
+	private JTextField txtCantidad;
 	private JButton btnAceptar;
 	private JPanel panelCantidad;
 	private JPanel panelTexto;
 	private JPanel panelAceptar;
+	private JButton btnVolver;
+	private JPanel panelCancelar;
 
 
 	public void setActionListener(ActionListener actionListener) {
+		this.btnAceptar.addActionListener(actionListener);
+		this.btnVolver.addActionListener(actionListener);
 		this.actionListener = actionListener;
 	}
 
@@ -70,7 +74,7 @@ public class VentanaPedido extends JFrame implements IVista{
 		
 		this.panelBotones = new JPanel();
 		getContentPane().add(this.panelBotones, BorderLayout.SOUTH);
-		this.panelBotones.setLayout(new GridLayout(0, 3, 0, 0));
+		this.panelBotones.setLayout(new GridLayout(0, 4, 0, 0));
 		
 		this.panelCantidad = new JPanel();
 		this.panelBotones.add(this.panelCantidad);
@@ -81,15 +85,23 @@ public class VentanaPedido extends JFrame implements IVista{
 		this.panelTexto = new JPanel();
 		this.panelBotones.add(this.panelTexto);
 		
-		this.txtTexto = new JTextField();
-		this.panelTexto.add(this.txtTexto);
-		this.txtTexto.setColumns(10);
+		this.txtCantidad = new JTextField();
+		this.panelTexto.add(this.txtCantidad);
+		this.txtCantidad.setColumns(10);
 		
 		this.panelAceptar = new JPanel();
 		this.panelBotones.add(this.panelAceptar);
 		
 		this.btnAceptar = new JButton("Aceptar");
 		this.panelAceptar.add(this.btnAceptar);
+		this.btnAceptar.setActionCommand("ACEPTAR");
+		
+		this.panelCancelar = new JPanel();
+		this.panelBotones.add(this.panelCancelar);
+		
+		this.btnVolver = new JButton("VOLVER");
+		this.panelCancelar.add(this.btnVolver);
+		this.btnAceptar.setActionCommand("VOLVER");
 		
 		this.setVisible(true);
 	}
@@ -102,6 +114,16 @@ public class VentanaPedido extends JFrame implements IVista{
 	@Override
 	public void mostrar() {
 		this.setVisible(true);		
+	}
+	
+	public int getCantidad() {
+		int cantidad;
+		try {
+			cantidad = Integer.parseInt(this.txtCantidad.getText());	
+		}catch (Exception exception){
+			cantidad = -1;
+		}
+		return cantidad;
 	}
 	
 	public Producto getProductoSeleccionado() {

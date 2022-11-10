@@ -25,6 +25,7 @@ public class Local extends Observable {
 	public static final int prefijoMesa = 30000;
 	public static final int prefijoProducto = 40000;
 
+	private boolean admin; //indica si quien logeo es admin o no
 	private String nombreLocal;
 	private float sueldo;
 	private LocalDatos localdatos;
@@ -43,8 +44,9 @@ public class Local extends Observable {
 	private ConfiguracionDeSistema zonaConfSistema;
 
 	private Local() {
-		nombreLocal = "Local1";
-		sueldo = 999;
+		this.nombreLocal = "Local1";
+		this.sueldo = 999;
+		this.admin = false;
 		operarioAdministrador = new OperarioAdministrador(0, "pepe", "01/05/2000", "a1", "a1");
 		this.zonaFacturacion = MetodosFacturacion.getInstance();
 		this.zonaConfSistema = ConfiguracionDeSistema.getInstance();
@@ -93,6 +95,14 @@ public class Local extends Observable {
 		return productos;
 	}
 	
+	public boolean getAdmin() {
+		return admin;
+	}
+	
+	public void setAdmin(boolean esAdmin) {
+		this.admin = esAdmin;
+	}
+	
 	//pre-condiciones: mesa != null
 	public Comanda getComandaByMesa(Mesa mesa) {
 		Comanda comanda = null;
@@ -112,7 +122,8 @@ public class Local extends Observable {
 		int i = 0;
 		if (operarioAdministrador.getNombreUsuario().equals(nombreUsuario)) {
 			if (operarioAdministrador.getPassword().equals(password)) {
-				this.notifyObservers("OPERARIO ADMIN");	
+				this.admin = true;
+				this.notifyObservers("LOGIN CORRECTO");	
 			}
 			else {
 				this.notifyObservers("PASSWORD INCORRECTO");
@@ -123,8 +134,7 @@ public class Local extends Observable {
 			if (i < operarios.size()) {
 
 				if (operarios.get(i).getPassword().equals(password)) {
-
-					this.notifyObservers("OPERARIO");
+					this.notifyObservers("LOGIN CORRECTO");	
 				} else {
 					this.notifyObservers("PASSWORD INCORRECTO");
 				}			
@@ -148,5 +158,7 @@ public class Local extends Observable {
 	public ArrayList<Comanda> getComandasActivas() {
 		return comandas;
 	}
+
+
 
 }

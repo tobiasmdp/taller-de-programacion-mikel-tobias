@@ -38,10 +38,10 @@ public class ControladorMesas implements ActionListener, Observer{
 		}
 		else if (comando.equals("MODIFICAR")) {
 			this.vista.esconder();
-			ControladorMesasModificar controladorModificarMesa = new ControladorMesasModificar();
+			ControladorMesaModificar controladorModificarMesa = new ControladorMesaModificar();
 		}else if (comando.equals("ELIMINAR")) {
 			this.vista.esconder();
-			ControladorMesasEliminar controladorMesaEliminar = new ControladorMesasEliminar();
+			ControladorMesaEliminar controladorModificarMesa = new ControladorMesaEliminar();
 		}
 		else if (comando.equals("VOLVER")) {
 			this.vista.esconder();

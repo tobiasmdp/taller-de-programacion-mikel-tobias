@@ -4,12 +4,14 @@ import java.awt.event.ActionEvent;
 
 import java.awt.event.ActionListener;
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 import capaDeDatos.Comanda;
 import capaDeDatos.Mesa;
 import capaDeDatos.Operario;
+import capaDeDatos.Producto;
 import capaDeNegocios.Local;
 import capaDeNegocios.MetodosFacturacion;
 import vista.VentanaLogin;
@@ -42,15 +44,28 @@ public class ControladorPedido implements ActionListener, Observer {
 	    	    throw new InvalidParameterException();
 	  	}
 
+	//pre condiciones:
+	//ActCommand: ACEPTAR -> El producto existe y esta en la lista de productos
+	//ActCommand: VOLVER -> No tiene
 	@Override
 	public void actionPerformed(ActionEvent e) { // escucha la vista
+		int cantidad; 
+		Producto producto;
 		String comando = e.getActionCommand();
-		if (comando.equals("ADMINISTRADOR")) {
-			this.vista.esconder();
-			ControladorOperarioAdmin controladorOperarioAdmin= new ControladorOperarioAdmin();
+		if (comando.equals("ACEPTAR")) {
+			cantidad = this.vista.getCantidad();
+			if (cantidad > 0) {
+				producto = this.vista.getProductoSeleccionado();
+				if (producto.getStock() >= cantidad) {
+					producto.setStock(producto.getStock() - cantidad);
+					this.vista.esconder();
+					ControladorOperario controladorOperario = new ControladorOperario();					
+				}
+			}
 		}
-		else if(comando.equals("CERRAR COMANDA")) {
-			
+		else if(comando.equals("VOLVER")) {
+			this.vista.esconder();
+			ControladorOperario controladorOperario = new ControladorOperario();
 		}
 	}
 

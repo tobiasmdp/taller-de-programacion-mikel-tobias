@@ -33,16 +33,11 @@ public class ControladorLogin implements ActionListener, Observer {
 	    	if (o != this.modelo)
 	    	    throw new InvalidParameterException();
 	    	
-	    	if (arg.toString().contentEquals("OPERARIO"))
+	    	if (arg.toString().contentEquals("LOGIN CORRECTO"))
 	    	{
 	    	    this.vista.esconder();
 	    		ControladorOperario controladorOperario= new ControladorOperario();
-	    		controladorOperario.getVista().getBtnAdmin().setEnabled(false);
-	    	}else if (arg.toString().contentEquals("OPERARIO ADMIN"))
-	    	{
-	    	    this.vista.esconder();
-	    	    ControladorOperario controladorOperario= new ControladorOperario();
-	    	} 
+	    	}
 	    	else if (arg.toString().contentEquals("USER INCORRECTO"))
 	    	{
 	    	    this.vista.getLblErrorUsuario().setVisible(true);
