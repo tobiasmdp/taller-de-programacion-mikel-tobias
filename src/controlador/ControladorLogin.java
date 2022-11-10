@@ -33,17 +33,17 @@ public class ControladorLogin implements ActionListener, Observer {
 	    	if (o != this.modelo)
 	    	    throw new InvalidParameterException();
 	    	
-	    	if (arg.toString().contentEquals("PASSWORD CORRECTA"))
+	    	if (arg.toString().contentEquals("LOGIN CORRECTO"))
 	    	{
 	    	    this.vista.esconder();
-	    	    //iniciarCOntrolador2;
-	    	} else if (arg.toString().contentEquals("USER INCORRECTO"))
-	    	{
-	    	    this.vista.getLblNewLabel().setVisible(true);
-	    	}else if(arg.toString().contentEquals("PASSWORD INCORRECTA")){
-	    		this.vista.getLblPasswordError().setVisible(true);
+	    		ControladorOperario controladorOperario= new ControladorOperario();
 	    	}
-		
+	    	else if (arg.toString().contentEquals("USER INCORRECTO"))
+	    	{
+	    	    this.vista.getLblErrorUsuario().setVisible(true);
+	    	}else if(arg.toString().contentEquals("PASSWORD INCORRECTO")){
+	    		this.vista.getLblErrorPassword().setVisible(true);
+	    	}	
 	}
 
 	@Override
@@ -51,8 +51,6 @@ public class ControladorLogin implements ActionListener, Observer {
 		String comando = e.getActionCommand();
 		if (comando == "LOGIN") {
 			Local.getInstance().login(vista.getTxtUsuario().getText(), vista.getTxtPassword().getText());
-
-			// aca pasas a otro controlador
 		}
 
 	}

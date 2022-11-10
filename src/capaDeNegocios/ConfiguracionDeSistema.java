@@ -50,7 +50,7 @@ public class ConfiguracionDeSistema {
 			mesa.setComensales(valor);
 			break;
 		default:
-			Raise exception;
+			//Raise exception;
 		}
 	}
 	
@@ -60,7 +60,7 @@ public class ConfiguracionDeSistema {
 			mesa.setEstado(valor);
 			break;
 		default:
-			Raise exception;
+			//Raise exception;
 		}
 	}
 	
@@ -89,7 +89,7 @@ public class ConfiguracionDeSistema {
 			producto.setStock(valor);
 			break;
 		default:
-			Raise exception;
+			//Raise exception;
 		}
 	}
 	
@@ -99,7 +99,7 @@ public class ConfiguracionDeSistema {
 			producto.setNombre(valor);
 			break;
 		default:
-			Raise exception;
+		//	Raise exception;
 		}
 	}
 	
@@ -112,7 +112,7 @@ public class ConfiguracionDeSistema {
 			producto.setPrecioVenta(valor);
 			break;
 		default:
-			Raise exception;
+		//	Raise exception;
 		}
 	}
 	

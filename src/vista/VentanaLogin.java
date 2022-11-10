@@ -22,21 +22,21 @@ public class VentanaLogin extends JFrame implements IVista, MouseListener{
 	private ActionListener actionListener;
 
 	private JTextField txtUsuario;
-	private JButton btnLogin;
-	private JPanel panel;
-	private JPanel panel_1;
+	private JButton btnIngreso;
+	private JPanel panelGeneral;
+	private JPanel panelUsuario;
 	private JLabel lblUsuario;
-	private JPanel panel_2;
-	private JPanel panel_3;
-	private JLabel lblPasswordError;
-	private JPanel panel_5;
+	private JPanel panelTxtUsuario;
+	private JPanel panelPassword;
+	private JLabel lblPassword;
+	private JPanel panelBoton;
 	private JPanel contentPane;
 	private JPasswordField txtPassword;
-	private JPanel panel_4; 
-	private JPanel panel_6;
-	private JPanel panel_7;
-	private JLabel lblNewLabel;
-	private JLabel lblUserError;
+	private JPanel panelTxtPassword; 
+	private JPanel panelErrorUsuario;
+	private JPanel panelErrorPassword;
+	private JLabel lblErrorUsuario;
+	private JLabel lblErrorPassword;
 
 	public void setActionListener(ActionListener actionListener) {
 		this.actionListener = actionListener;
@@ -54,60 +54,60 @@ public class VentanaLogin extends JFrame implements IVista, MouseListener{
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 
-		panel = new JPanel();
-		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(new GridLayout(0, 1, 0, 0));
+		panelGeneral = new JPanel();
+		contentPane.add(panelGeneral, BorderLayout.CENTER);
+		panelGeneral.setLayout(new GridLayout(0, 1, 0, 0));
 
-		panel_1 = new JPanel();
-		panel.add(panel_1);
+		panelUsuario = new JPanel();
+		panelGeneral.add(panelUsuario);
 
-		lblUsuario = new JLabel(" Usuario");
-		panel_1.add(lblUsuario);
+		lblUsuario = new JLabel(" Usuario:");
+		panelUsuario.add(lblUsuario);
 
-		panel_2 = new JPanel();
-		panel.add(panel_2);
+		panelTxtUsuario = new JPanel();
+		panelGeneral.add(panelTxtUsuario);
 
 		txtUsuario = new JTextField();
-		panel_2.add(txtUsuario);
+		panelTxtUsuario.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
-		this.panel_6 = new JPanel();
-		this.panel.add(this.panel_6);
+		this.panelErrorUsuario = new JPanel();
+		this.panelGeneral.add(this.panelErrorUsuario);
 		
-		this.lblNewLabel = new JLabel("error user");
-		this.lblNewLabel.setVisible(false);
-		this.lblNewLabel.setForeground(Color.RED);
-		this.panel_6.add(this.lblNewLabel);
+		this.lblErrorUsuario = new JLabel("Error Usuario");
+		this.lblErrorUsuario.setVisible(false);
+		this.lblErrorUsuario.setForeground(Color.RED);
+		this.panelErrorUsuario.add(this.lblErrorUsuario);
 
-		panel_3 = new JPanel();
-		panel.add(panel_3);
+		panelPassword = new JPanel();
+		panelGeneral.add(panelPassword);
 
-		lblPasswordError = new JLabel("Password");
-		panel_3.add(lblPasswordError);
+		lblPassword = new JLabel("Contraseña:");
+		panelPassword.add(lblPassword);
 		
-		this.panel_4 = new JPanel();
-		this.panel.add(this.panel_4);
+		this.panelTxtPassword = new JPanel();
+		this.panelGeneral.add(this.panelTxtPassword);
 		
 		this.txtPassword = new JPasswordField();
 		this.txtPassword.setColumns(10);
-		this.panel_4.add(this.txtPassword);
+		this.panelTxtPassword.add(this.txtPassword);
 		
-		this.panel_7 = new JPanel();
-		this.panel.add(this.panel_7);
+		this.panelErrorPassword = new JPanel();
+		this.panelGeneral.add(this.panelErrorPassword);
 		
-		this.lblUserError = new JLabel("error passwowrd");
-		this.lblUserError.setVisible(false);
-		this.lblUserError.setForeground(Color.RED);
+		this.lblErrorPassword = new JLabel("Error Contraseña");
+		this.lblErrorPassword.setVisible(false);
+		this.lblErrorPassword.setForeground(Color.RED);
 		
-		this.panel_7.add(this.lblUserError);
+		this.panelErrorPassword.add(this.lblErrorPassword);
 
-		panel_5 = new JPanel();
-		panel.add(panel_5);
+		panelBoton = new JPanel();
+		panelGeneral.add(panelBoton);
 
-		btnLogin = new JButton("Login");
-		this.btnLogin.addMouseListener(this);
-		btnLogin.setVerticalAlignment(SwingConstants.TOP);
-		panel_5.add(btnLogin);
+		btnIngreso = new JButton("Ingreso");
+		this.btnIngreso.addMouseListener(this);
+		btnIngreso.setVerticalAlignment(SwingConstants.TOP);
+		panelBoton.add(btnIngreso);
 		
 		this.setVisible(true);
 	}
@@ -123,24 +123,70 @@ public class VentanaLogin extends JFrame implements IVista, MouseListener{
 		this.setVisible(true);		
 	}
 
+
+	public JButton getBtnIngreso() {
+		return btnIngreso;
+	}
+
+	public JPanel getPanelGeneral() {
+		return panelGeneral;
+	}
+
+	public JPanel getPanelUsuario() {
+		return panelUsuario;
+	}
+
+	public JLabel getLblUsuario() {
+		return lblUsuario;
+	}
+
+	public JPanel getPanelTxtUsuario() {
+		return panelTxtUsuario;
+	}
+
+	public JPanel getPanelPassword() {
+		return panelPassword;
+	}
+
+	public JLabel getLblPassword() {
+		return lblPassword;
+	}
+
+	public JPanel getPanelBoton() {
+		return panelBoton;
+	}
+
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+
+	public JPasswordField getTxtPassword() {
+		return txtPassword;
+	}
+
+	public JPanel getPanelTxtPassword() {
+		return panelTxtPassword;
+	}
+
 	public JTextField getTxtUsuario() {
 		return txtUsuario;
 	}
 
-	public JTextField getTxtPassword() {
-		return txtPassword;
+	public JPanel getPanelErrorUsuario() {
+		return panelErrorUsuario;
 	}
 
-	public JLabel getLblPasswordError() {
-		return lblPasswordError;
+	public JPanel getPanelErrorPassword() {
+		return panelErrorPassword;
 	}
 
-	public JLabel getLblNewLabel() {
-		return lblNewLabel;
+	public JLabel getLblErrorUsuario() {
+		return lblErrorUsuario;
 	}
 
-	
-	
+	public JLabel getLblErrorPassword() {
+		return lblErrorPassword;
+	}
 
 	public void mouseClicked(MouseEvent e) {
 	}
