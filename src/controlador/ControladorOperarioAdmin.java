@@ -39,7 +39,50 @@ public class ControladorOperarioAdmin implements ActionListener, Observer {
 
 	@Override
 	public void actionPerformed(ActionEvent e) { // escucha la vista
-		String comando = e.getActionCommand();
+		String comando=e.getActionCommand();
+		if(comando.equals("ARRANCAR DIA")) {
+			//aca no sabria bien que hacer
+		}
+		else if(comando.equals("MOZOMESA")) {
+			this.vista.esconder();
+			ControladorMozoMesa controladorMozoMesa= new ControladorMozoMesa();
+		}
+		else if (comando.equals("VER ESTADISTICAS")) {
+			this.vista.esconder();
+			ControladorEstadistica controladorEstadistica= new ControladorEstadistica();
+		}
+		else if (comando.equals("CONFIGURAR EMPRESA")) {
+			this.vista.esconder();
+			ControladorEmpresa controladorEmpresa= new ControladorEmpresa();
+		}
+		else if (comando.equals("OPERARIOSABM")) {
+			this.vista.esconder();
+			ControladorOperariosABM controladorOperariosABM= new ControladorOperariosABM();
+		}
+		else if (comando.equals("MESAS")) {
+			this.vista.esconder();
+			ControladorMesas controladorMesas= new ControladorMesas();
+		}
+		else if (comando.equals("PRODUCTOS")) {
+			this.vista.esconder();
+			ControladorProductos controladorProductos = new ControladorProductos();
+		}
+		else if(comando.equals("MOZOS")) {
+			this.vista.esconder();
+			ControladorMozos controladorMozos = new ControladorMozos();
+		}
+		else if (comando.equals("PROMOCION PRODUCTO")) {
+			this.vista.esconder();
+			ControladorPromocionProducto controladorPromocionProducto = new ControladorPromocionProducto();
+		}
+		else if (comando.equals("PROMOCION TEMPORAL")) {
+			this.vista.esconder();
+			ControladorPromocionTemporal controladorPromocionTemporal = new ControladorPromocionTemporal();
+		}
+		else if (comando.equals("VOLVER")) {
+			this.vista.esconder();
+			ControladorOperario controladorOperario = new ControladorOperario();
+		}
 
 	}
 }

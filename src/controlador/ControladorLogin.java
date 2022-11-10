@@ -37,16 +37,17 @@ public class ControladorLogin implements ActionListener, Observer {
 	    	{
 	    	    this.vista.esconder();
 	    		ControladorOperario controladorOperario= new ControladorOperario();
+	    		controladorOperario.getVista().getBtnAdmin().setEnabled(false);
 	    	}else if (arg.toString().contentEquals("OPERARIO ADMIN"))
 	    	{
 	    	    this.vista.esconder();
-	    		ControladorOperarioAdmin controladorOperarioAdmin = new ControladorOperarioAdmin();
+	    	    ControladorOperario controladorOperario= new ControladorOperario();
 	    	} 
 	    	else if (arg.toString().contentEquals("USER INCORRECTO"))
 	    	{
-	    	    this.vista.getLblNewLabel().setVisible(true);
+	    	    this.vista.getLblErrorUsuario().setVisible(true);
 	    	}else if(arg.toString().contentEquals("PASSWORD INCORRECTO")){
-	    		this.vista.getLblPasswordError().setVisible(true);
+	    		this.vista.getLblErrorPassword().setVisible(true);
 	    	}	
 	}
 

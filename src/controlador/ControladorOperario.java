@@ -39,6 +39,13 @@ public class ControladorOperario implements ActionListener, Observer {
 	@Override
 	public void actionPerformed(ActionEvent e) { // escucha la vista
 		String comando = e.getActionCommand();
+		if (comando.equals("ADMINISTRADOR")) {
+			this.vista.esconder();
+			ControladorOperarioAdmin controladorOperarioAdmin= new ControladorOperarioAdmin();
+		}
+	}
 
+	public VentanaOperario getVista() {
+		return vista;
 	}
 }
