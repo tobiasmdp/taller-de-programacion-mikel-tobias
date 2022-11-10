@@ -18,7 +18,11 @@ public class VentanaMesas extends JFrame implements IVista{
 	private JButton btnEliminarMesa;
 	private JButton btnVolver;
 	private JPanel panel;
-
+	private ActionListener actionListener;
+	private JPanel panel_1;
+	private JPanel panel_2;
+	private JPanel panel_3;
+	
 	public VentanaMesas() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -28,17 +32,26 @@ public class VentanaMesas extends JFrame implements IVista{
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(2, 2, 0, 0));
 		
+		this.panel_1 = new JPanel();
+		this.contentPane.add(this.panel_1);
+		
 		btnNuevaMesa = new JButton("Nueva Mesa");
+		this.panel_1.add(this.btnNuevaMesa);
 		this.btnNuevaMesa.setActionCommand("NUEVA");
-		contentPane.add(btnNuevaMesa);
+		
+		this.panel_2 = new JPanel();
+		this.contentPane.add(this.panel_2);
 		
 		btnModificaMesa = new JButton("Modificar Mesa");
+		this.panel_2.add(this.btnModificaMesa);
 		this.btnModificaMesa.setActionCommand("MODIFICAR");
-		contentPane.add(btnModificaMesa);
 		
-		btnEliminarMesa = new JButton("Elminar Mesa");
+		this.panel_3 = new JPanel();
+		this.contentPane.add(this.panel_3);
+		
+		btnEliminarMesa = new JButton("Eliminar Mesa");
+		this.panel_3.add(this.btnEliminarMesa);
 		this.btnEliminarMesa.setActionCommand("ELIMINAR");
-		contentPane.add(btnEliminarMesa);
 		
 		panel = new JPanel();
 		contentPane.add(panel);
@@ -56,6 +69,7 @@ public class VentanaMesas extends JFrame implements IVista{
 		this.btnModificaMesa.addActionListener(actionListener);
 		this.btnEliminarMesa.addActionListener(actionListener);
 		this.btnVolver.addActionListener(actionListener);
+		this.actionListener = actionListener;
 	}
 
 	@Override

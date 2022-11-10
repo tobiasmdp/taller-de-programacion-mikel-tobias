@@ -6,6 +6,7 @@ import java.util.Observable;
 
 import capaDeDatos.AsignacionDiaria;
 import capaDeDatos.Comanda;
+import capaDeDatos.Factura;
 import capaDeDatos.LocalDatos;
 import capaDeDatos.Mesa;
 import capaDeDatos.Mozo;
@@ -24,18 +25,19 @@ public class Local extends Observable {
 	public static final int prefijoMesa = 30000;
 	public static final int prefijoProducto = 40000;
 
-	public String nombreLocal;
-	public float sueldo;
-	public LocalDatos localdatos;
-	public OperarioAdministrador operarioAdministrador;
-	public ArrayList<Mesa> mesas = new ArrayList<Mesa>();
-	public ArrayList<Mozo> mozos = new ArrayList<Mozo>();
-	public ArrayList<PromocionProducto> promocionesProductos = new ArrayList<PromocionProducto>();
-	public ArrayList<PromocionTemporal> promocionesTemporales = new ArrayList<PromocionTemporal>();
-	public ArrayList<Operario> operarios = new ArrayList<Operario>();
-	public ArrayList<Comanda> comandasActivas = new ArrayList<Comanda>();
-	public ArrayList<Producto> productos = new ArrayList<Producto>();
-	public ArrayList<AsignacionDiaria> asignacionDiaria = new ArrayList<AsignacionDiaria>();
+	private String nombreLocal;
+	private float sueldo;
+	private LocalDatos localdatos;
+	private OperarioAdministrador operarioAdministrador;
+	private ArrayList<Mesa> mesas = new ArrayList<Mesa>();
+	private ArrayList<Mozo> mozos = new ArrayList<Mozo>();
+	private ArrayList<Factura> facturas = new ArrayList<Factura>();
+	private ArrayList<PromocionProducto> promocionesProductos = new ArrayList<PromocionProducto>();
+	private ArrayList<PromocionTemporal> promocionesTemporales = new ArrayList<PromocionTemporal>();
+	private ArrayList<Operario> operarios = new ArrayList<Operario>();
+	private ArrayList<Comanda> comandas = new ArrayList<Comanda>();
+	private ArrayList<Producto> productos = new ArrayList<Producto>();
+	private ArrayList<AsignacionDiaria> asignacionDiaria = new ArrayList<AsignacionDiaria>();
 	private GestionDePersonal zonaPersonal;
 	private MetodosFacturacion zonaFacturacion;
 	private ConfiguracionDeSistema zonaConfSistema;
@@ -72,24 +74,38 @@ public class Local extends Observable {
 	}
 
 	public ArrayList<Mozo> getMozos() {
-
 		return mozos;
 	}
 
 	public ArrayList<Operario> getOperarios() {
-
 		return operarios;
 	}
 
 	public ArrayList<Mesa> getMesas() {
-
 		return mesas;
+	}
+	
+	public ArrayList<Factura> getFacturas() {
+		return facturas;
 	}
 
 	public ArrayList<Producto> getProductos() {
 		return productos;
 	}
+	
+	//pre-condiciones: mesa != null
+	public Comanda getComandaByMesa(Mesa mesa) {
+		Comanda comanda = null;
+		int i=0;
+		while (i < comandas.size() && !(comandas.get(i).getMesa().equals(mesa)))
+			i++;
+		if (i < comandas.size()) {
+			comanda = comandas.get(i);
+		}
+		return comanda;
+	}
 
+	//precondiciones: nombreUsuario y password != ""
 	public void login(String nombreUsuario, String password) {
 		this.setChanged();
 		
@@ -119,6 +135,18 @@ public class Local extends Observable {
 	}
 
 	public void Logout(Operario operario) {
+	}
+
+	public ArrayList<PromocionProducto> getPromocionesProductos() {
+		return promocionesProductos;
+	}
+
+	public ArrayList<PromocionTemporal> getPromocionesTemporales() {
+		return promocionesTemporales;
+	}
+
+	public ArrayList<Comanda> getComandasActivas() {
+		return comandas;
 	}
 
 }

@@ -14,20 +14,24 @@ import capaDeNegocios.Local;
 import capaDeNegocios.MetodosFacturacion;
 import vista.VentanaLogin;
 import vista.VentanaOperario;
+import vista.VentanaPedido;
 
 @SuppressWarnings("deprecation")
-public class ControladorOperario implements ActionListener, Observer {
+public class ControladorPedido implements ActionListener, Observer {
 	private Local modelo;
+	private Mesa mesa;
 	private Operario operario = null;
 	private int tipoUsuario = 0; // 0 = operario, 1 = operarioAdmin;
-	private VentanaOperario vista;
+	private VentanaPedido vista;
 
-	public ControladorOperario() {
+	public ControladorPedido(Mesa mesa) {
 
+		this.mesa = mesa;
+		
 		this.modelo = Local.getInstance(); // arranca el modelo
 		this.modelo.addObserver(this);
 		
-		this.vista = new VentanaOperario(); // arranca la vista
+		this.vista = new VentanaPedido(); // arranca la vista
 		this.vista.setActionListener(this);
 
 	}
@@ -40,29 +44,17 @@ public class ControladorOperario implements ActionListener, Observer {
 
 	@Override
 	public void actionPerformed(ActionEvent e) { // escucha la vista
-		Mesa mesa;
 		String comando = e.getActionCommand();
 		if (comando.equals("ADMINISTRADOR")) {
 			this.vista.esconder();
 			ControladorOperarioAdmin controladorOperarioAdmin= new ControladorOperarioAdmin();
 		}
 		else if(comando.equals("CERRAR COMANDA")) {
-			mesa = this.vista.getMesaSeleccionada();
-			if (mesa != null) {
-				Comanda comanda = Local.getInstance().getComandaByMesa(mesa);
-				MetodosFacturacion.getInstance().bajaComanda(comanda);
-			}
-		}
-		else if(comando.equals("NUEVO PEDIDO")) {
-			this.vista.esconder();
-			mesa = this.vista.getMesaSeleccionada();
-			if (mesa != null) {
-				ControladorPedido controladorPedido = new ControladorPedido(mesa);
-			}
+			
 		}
 	}
 
-	public VentanaOperario getVista() {
+	public VentanaPedido getVista() {
 		return vista;
 	}
 }
