@@ -25,7 +25,6 @@ public class Main {
 		ConfiguracionDeSistema.getInstance().altaProducto(10, "Pepeya", 400, 500);
 		ConfiguracionDeSistema.getInstance().altaProducto(10, "Papaya", 200, 300);
 		
-		
 	}
 
 }
