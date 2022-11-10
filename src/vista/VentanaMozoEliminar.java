@@ -12,32 +12,33 @@ import javax.swing.JList;
 import javax.swing.border.TitledBorder;
 
 import capaDeDatos.Mesa;
+import capaDeDatos.Mozo;
 import capaDeNegocios.Local;
 
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 
-public class VentanaMesasEliminar extends JFrame implements IVista {
+public class VentanaMozoEliminar extends JFrame implements IVista {
 	private JButton btnVolver;
 	private JPanel panelVolver;
-	private JList<Mesa> listMesas;
-	private JPanel panelMesas;
+	private JList<Mozo> listMozos;
+	private JPanel panelMozos;
 	private JButton btnEliminar;
-	private DefaultListModel <Mesa> mesas= new DefaultListModel<Mesa>();
+	private DefaultListModel <Mozo> mozos= new DefaultListModel<Mozo>();
 
-	public VentanaMesasEliminar() {
+	public VentanaMozoEliminar() {
 		
-		mesas.addAll(Local.getInstance().getMesas());
+		mozos.addAll(Local.getInstance().getMozos());
 		
 		getContentPane().setLayout(new GridLayout(2, 0, 0, 0));
 		
-		panelMesas = new JPanel();
-		panelMesas.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Mesas", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		getContentPane().add(panelMesas);
+		panelMozos = new JPanel();
+		panelMozos.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Mozos", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		getContentPane().add(panelMozos);
 		
-		listMesas = new JList<Mesa>();
-		listMesas.setModel(mesas);
-		panelMesas.add(listMesas);
+		listMozos = new JList<Mozo>();
+		listMozos.setModel(mozos);
+		panelMozos.add(listMozos);
 		
 		panelVolver = new JPanel();
 		getContentPane().add(panelVolver);
@@ -60,13 +61,13 @@ public class VentanaMesasEliminar extends JFrame implements IVista {
 		
 	}
 	
-	public void addMesa(Mesa mesa) {
-		mesas.addElement(mesa); 
+	public void addMozo(Mozo mozo) {
+		mozos.addElement(mozo); 
 		this.validate(); 
 	}
 	
-	public void removeMesa(Mesa mesa) {
-		mesas.removeElement(mesa);
+	public void removeMozo(Mozo mesa) {
+		mozos.removeElement(mesa);
 		this.validate();
 	}
 
@@ -80,7 +81,7 @@ public class VentanaMesasEliminar extends JFrame implements IVista {
 		this.setVisible(true);		
 	}
 	
-	public Mesa getMesaSeleccionada() {
-		return this.listMesas.getSelectedValue();
+	public Mozo getMozoSeleccionada() {
+		return this.listMozos.getSelectedValue();
 	}
 }

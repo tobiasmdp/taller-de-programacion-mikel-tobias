@@ -5,25 +5,25 @@ import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
-import capaDeDatos.Mesa;
 import capaDeDatos.Operario;
 import capaDeNegocios.ConfiguracionDeSistema;
+import capaDeNegocios.GestionDePersonal;
 import capaDeNegocios.Local;
 import vista.VentanaMesas;
-import vista.VentanaMesasEliminar;
 import vista.VentanaMesasNueva;
+import vista.VentanaMozoNueva;
 import vista.VentanaOperarioAdmin;
 
-public class ControladorMesasEliminar implements ActionListener, Observer{
+public class ControladorMozoNuevo implements ActionListener, Observer{
 	private Local modelo;
-	private VentanaMesasEliminar vista;
+	private VentanaMozoNueva vista;
 	
-	public ControladorMesasEliminar() {
+	public ControladorMozoNuevo() {
 
 		this.modelo = Local.getInstance(); // arranca el modelo
 		this.modelo.addObserver(this);
 		
-		this.vista = new VentanaMesasEliminar(); // arranca la vista
+		this.vista = new VentanaMozoNueva(); // arranca la vista
 		this.vista.setActionListener(this);
 
 	}
@@ -35,16 +35,20 @@ public class ControladorMesasEliminar implements ActionListener, Observer{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Mesa mesa;
 		String comando=e.getActionCommand();
-		if (comando.equals("ELIMINAR")) {
-			mesa = this.vista.getMesaSeleccionada();
-			ConfiguracionDeSistema.getInstance().bajaMesa(mesa);
-			this.vista.removeMesa(mesa);
+		int cantHijos = 0;
+		if (comando.equals("CREAR")) {
+			try{
+				cantHijos=Integer.parseInt(this.vista.getTxtCantHijos().getText());
+			}
+			catch (NumberFormatException ex){
+	            ex.printStackTrace();
+	        }
+			GestionDePersonal.getInstance().altaMozo(this.vista.getTxtNombreyApellido().getText(),this.vista.getTxtNacimiento().getText(),cantHijos);
 		}
 		else if (comando.equals("VOLVER")) {
 			this.vista.esconder();
-			ControladorMesas controladorMesas = new ControladorMesas();
+			ControladorMozo controladorMozo = new ControladorMozo();
 		}
 	}
 

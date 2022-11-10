@@ -15,7 +15,7 @@ public class Main {
 	public static void main(String[] args) {
 		@SuppressWarnings("unused")
 		ControladorLogin controladorLogin = new ControladorLogin();
-		GestionDePersonal.getInstance().altaOperario("pepe", GregorianCalendar.getInstance(), "1", "1");
+		GestionDePersonal.getInstance().altaOperario("pepe", "01/05/2000", "1", "1");
 		
 		Local.getInstance().getMesas().add(new Mesa(0));
 		Local.getInstance().getMesas().add(new Mesa(1));
@@ -24,7 +24,6 @@ public class Main {
 		
 		ConfiguracionDeSistema.getInstance().altaProducto(10, "Pepeya", 400, 500);
 		ConfiguracionDeSistema.getInstance().altaProducto(10, "Papaya", 200, 300);
-		
 		
 	}
 

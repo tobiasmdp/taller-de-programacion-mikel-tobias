@@ -5,25 +5,26 @@ import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
-import capaDeDatos.Mesa;
 import capaDeDatos.Operario;
 import capaDeNegocios.ConfiguracionDeSistema;
+import capaDeNegocios.GestionDePersonal;
 import capaDeNegocios.Local;
 import vista.VentanaMesas;
-import vista.VentanaMesasEliminar;
 import vista.VentanaMesasNueva;
+import vista.VentanaMozoNueva;
+import vista.VentanaOperarioABMNuevo;
 import vista.VentanaOperarioAdmin;
 
-public class ControladorMesasEliminar implements ActionListener, Observer{
+public class ControladorOperarioABMNuevo implements ActionListener, Observer{
 	private Local modelo;
-	private VentanaMesasEliminar vista;
+	private VentanaOperarioABMNuevo vista;
 	
-	public ControladorMesasEliminar() {
+	public ControladorOperarioABMNuevo() {
 
 		this.modelo = Local.getInstance(); // arranca el modelo
 		this.modelo.addObserver(this);
 		
-		this.vista = new VentanaMesasEliminar(); // arranca la vista
+		this.vista = new VentanaOperarioABMNuevo(); // arranca la vista
 		this.vista.setActionListener(this);
 
 	}
@@ -35,16 +36,14 @@ public class ControladorMesasEliminar implements ActionListener, Observer{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Mesa mesa;
 		String comando=e.getActionCommand();
-		if (comando.equals("ELIMINAR")) {
-			mesa = this.vista.getMesaSeleccionada();
-			ConfiguracionDeSistema.getInstance().bajaMesa(mesa);
-			this.vista.removeMesa(mesa);
+		int cantHijos = 0;
+		if (comando.equals("CREAR")) {
+			GestionDePersonal.getInstance().altaOperario(this.vista.getTxtNombreyApellido().getText(),"zzz ",this.vista.getTxtNombreUsuario().getText(),this.vista.getTxtPassword().getText());
 		}
 		else if (comando.equals("VOLVER")) {
 			this.vista.esconder();
-			ControladorMesas controladorMesas = new ControladorMesas();
+			ControladorOperarioABM controladorOperarioABM = new ControladorOperarioABM();
 		}
 	}
 

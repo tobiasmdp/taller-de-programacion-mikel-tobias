@@ -6,24 +6,27 @@ import java.util.Observable;
 import java.util.Observer;
 
 import capaDeDatos.Mesa;
+import capaDeDatos.Mozo;
 import capaDeDatos.Operario;
 import capaDeNegocios.ConfiguracionDeSistema;
+import capaDeNegocios.GestionDePersonal;
 import capaDeNegocios.Local;
 import vista.VentanaMesas;
 import vista.VentanaMesasEliminar;
 import vista.VentanaMesasNueva;
+import vista.VentanaMozoEliminar;
 import vista.VentanaOperarioAdmin;
 
-public class ControladorMesasEliminar implements ActionListener, Observer{
+public class ControladorMozoEliminar implements ActionListener, Observer{
 	private Local modelo;
-	private VentanaMesasEliminar vista;
+	private VentanaMozoEliminar vista;
 	
-	public ControladorMesasEliminar() {
+	public ControladorMozoEliminar() {
 
 		this.modelo = Local.getInstance(); // arranca el modelo
 		this.modelo.addObserver(this);
 		
-		this.vista = new VentanaMesasEliminar(); // arranca la vista
+		this.vista = new VentanaMozoEliminar(); // arranca la vista
 		this.vista.setActionListener(this);
 
 	}
@@ -35,16 +38,16 @@ public class ControladorMesasEliminar implements ActionListener, Observer{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Mesa mesa;
+		Mozo mozo;
 		String comando=e.getActionCommand();
 		if (comando.equals("ELIMINAR")) {
-			mesa = this.vista.getMesaSeleccionada();
-			ConfiguracionDeSistema.getInstance().bajaMesa(mesa);
-			this.vista.removeMesa(mesa);
+			mozo = this.vista.getMozoSeleccionada();
+			GestionDePersonal.getInstance().bajaMozo(mozo);
+			this.vista.removeMozo(mozo);
 		}
 		else if (comando.equals("VOLVER")) {
 			this.vista.esconder();
-			ControladorMesas controladorMesas = new ControladorMesas();
+			ControladorMozo controladorMozo = new ControladorMozo();
 		}
 	}
 

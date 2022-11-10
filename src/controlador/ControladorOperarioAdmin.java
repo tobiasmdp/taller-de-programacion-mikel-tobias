@@ -41,23 +41,23 @@ public class ControladorOperarioAdmin implements ActionListener, Observer {
 	public void actionPerformed(ActionEvent e) { // escucha la vista
 		String comando=e.getActionCommand();
 		if(comando.equals("ARRANCAR DIA")) {
-			//aca no sabria bien que hacer
+			this.vista.getBtnMozoMesa().setEnabled(true);
 		}
 		else if(comando.equals("MOZOMESA")) {
 			this.vista.esconder();
-			ControladorMozoMesa controladorMozoMesa= new ControladorMozoMesa();
+			//ControladorMozoMesa controladorMozoMesa= new ControladorMozoMesa();
 		}
 		else if (comando.equals("VER ESTADISTICAS")) {
 			this.vista.esconder();
-			ControladorEstadistica controladorEstadistica= new ControladorEstadistica();
+			//ControladorEstadistica controladorEstadistica= new ControladorEstadistica();
 		}
 		else if (comando.equals("CONFIGURAR EMPRESA")) {
 			this.vista.esconder();
-			ControladorEmpresa controladorEmpresa= new ControladorEmpresa();
+			//ControladorEmpresa controladorEmpresa= new ControladorEmpresa();
 		}
 		else if (comando.equals("OPERARIOSABM")) {
 			this.vista.esconder();
-			//ControladorOperariosABM controladorOperariosABM= new ControladorOperariosABM();
+			ControladorOperarioABM controladorOperariosABM= new ControladorOperarioABM();
 		}
 		else if (comando.equals("MESAS")) {
 			this.vista.esconder();
@@ -69,7 +69,7 @@ public class ControladorOperarioAdmin implements ActionListener, Observer {
 		}
 		else if(comando.equals("MOZOS")) {
 			this.vista.esconder();
-			//ControladorMozos controladorMozos = new ControladorMozos();
+			ControladorMozo controladorMozos = new ControladorMozo();
 		}
 		else if (comando.equals("PROMOCION PRODUCTO")) {
 			this.vista.esconder();

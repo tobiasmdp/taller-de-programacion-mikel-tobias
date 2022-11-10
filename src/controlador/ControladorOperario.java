@@ -54,9 +54,9 @@ public class ControladorOperario implements ActionListener, Observer {
 			}
 		}
 		else if(comando.equals("NUEVO PEDIDO")) {
-			this.vista.esconder();
 			mesa = this.vista.getMesaSeleccionada();
 			if (mesa != null) {
+				this.vista.esconder();
 				ControladorPedido controladorPedido = new ControladorPedido(mesa);
 			}
 		}

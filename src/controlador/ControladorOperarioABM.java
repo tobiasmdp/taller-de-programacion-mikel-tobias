@@ -8,18 +8,20 @@ import java.util.Observer;
 import capaDeDatos.Operario;
 import capaDeNegocios.Local;
 import vista.VentanaMesas;
+import vista.VentanaMozos;
+import vista.VentanaOperarioABM;
 import vista.VentanaOperarioAdmin;
 
-public class ControladorMesas implements ActionListener, Observer{
+public class ControladorOperarioABM implements ActionListener, Observer{
 	private Local modelo;
-	private VentanaMesas vista;
+	private VentanaOperarioABM vista;
 	
-	public ControladorMesas() {
+	public ControladorOperarioABM() {
 
 		this.modelo = Local.getInstance(); // arranca el modelo
 		this.modelo.addObserver(this);
 		
-		this.vista = new VentanaMesas(); // arranca la vista
+		this.vista = new VentanaOperarioABM(); // arranca la vista
 		this.vista.setActionListener(this);
 
 	}
@@ -34,14 +36,14 @@ public class ControladorMesas implements ActionListener, Observer{
 		String comando=e.getActionCommand();
 		if (comando.equals("NUEVA")) {
 			this.vista.esconder();
-			ControladorMesasNueva controladorNuevaMesa = new ControladorMesasNueva();
+			ControladorOperarioABMNuevo controladorOperarioNuevo = new ControladorOperarioABMNuevo();
 		}
 		else if (comando.equals("MODIFICAR")) {
 			this.vista.esconder();
-			ControladorMesasModificar controladorModificarMesa = new ControladorMesasModificar();
+			ControladorOperarioABMModificar controladorOperarioABMModificar = new ControladorOperarioABMModificar();
 		}else if (comando.equals("ELIMINAR")) {
 			this.vista.esconder();
-			ControladorMesasEliminar controladorModificarMesa = new ControladorMesasEliminar();
+			ControladorOperarioABMEliminar controladorOperarioABMEliminar = new ControladorOperarioABMEliminar();
 		}
 		else if (comando.equals("VOLVER")) {
 			this.vista.esconder();

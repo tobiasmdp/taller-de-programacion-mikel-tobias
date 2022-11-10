@@ -8,7 +8,7 @@ public class Operario extends Persona {
 	private Boolean activo;
 
 	public Operario(int id, String nombreApellido, 
-			Calendar nacimiento, String nombreUsuario, String password) {
+			String nacimiento, String nombreUsuario, String password) {
 		super(id, nombreApellido, nacimiento);
 		this.nombreUsuario = nombreUsuario;
 		this.password = password;

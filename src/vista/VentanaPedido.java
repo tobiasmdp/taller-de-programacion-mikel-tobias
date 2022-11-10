@@ -61,6 +61,7 @@ public class VentanaPedido extends JFrame implements IVista{
 	 */
 	public VentanaPedido() {
 		
+		setBounds(100, 100, 800, 700);
 		productos.addAll(Local.getInstance().getProductos());
 		
 		getContentPane().setLayout(new BorderLayout(0, 0));
