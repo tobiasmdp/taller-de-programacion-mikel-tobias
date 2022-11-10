@@ -5,23 +5,25 @@ import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
+import capaDeDatos.Mesa;
 import capaDeDatos.Operario;
 import capaDeNegocios.ConfiguracionDeSistema;
 import capaDeNegocios.Local;
 import vista.VentanaMesas;
+import vista.VentanaMesasEliminar;
 import vista.VentanaMesasNueva;
 import vista.VentanaOperarioAdmin;
 
 public class ControladorMesasEliminar implements ActionListener, Observer{
 	private Local modelo;
-	private VentanaMesasNueva vista;
+	private VentanaMesasEliminar vista;
 	
 	public ControladorMesasEliminar() {
 
 		this.modelo = Local.getInstance(); // arranca el modelo
 		this.modelo.addObserver(this);
 		
-		this.vista = new VentanaMesasNueva(); // arranca la vista
+		this.vista = new VentanaMesasEliminar(); // arranca la vista
 		this.vista.setActionListener(this);
 
 	}
@@ -33,9 +35,12 @@ public class ControladorMesasEliminar implements ActionListener, Observer{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		Mesa mesa;
 		String comando=e.getActionCommand();
 		if (comando.equals("ELIMINAR")) {
-			ConfiguracionDeSistema.getInstance().bajaMesa(null);// el null tendria que ser lo que cliqueo en la lista
+			mesa = this.vista.getMesaSeleccionada();
+			ConfiguracionDeSistema.getInstance().bajaMesa(mesa);
+			this.vista.removeMesa(mesa);
 		}
 		else if (comando.equals("VOLVER")) {
 			this.vista.esconder();

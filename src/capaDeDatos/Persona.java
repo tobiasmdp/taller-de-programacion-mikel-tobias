@@ -5,9 +5,9 @@ import java.util.Calendar;
 public abstract class Persona {
 	private int id;
 	private String nombreApellido;
-	private Calendar nacimiento;
+	private String nacimiento;
 
-	public Persona(int id, String nombreApellido, Calendar nacimiento) {
+	public Persona(int id, String nombreApellido, String nacimiento) {
 		super();
 		this.id = id; 
 		this.nombreApellido = nombreApellido;
@@ -22,11 +22,11 @@ public abstract class Persona {
 		this.nombreApellido = nombreApellido;
 	}
 
-	public Calendar getNacimiento() {
+	public String getNacimiento() {
 		return nacimiento;
 	}
 
-	public void setNacimiento(Calendar nacimiento) {
+	public void setNacimiento(String nacimiento) {
 		this.nacimiento = nacimiento;
 	}
 

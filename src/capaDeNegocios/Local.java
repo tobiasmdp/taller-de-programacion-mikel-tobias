@@ -45,7 +45,7 @@ public class Local extends Observable {
 	private Local() {
 		nombreLocal = "Local1";
 		sueldo = 999;
-		operarioAdministrador = new OperarioAdministrador(0, "pepe", GregorianCalendar.getInstance(), "a1", "a1");
+		operarioAdministrador = new OperarioAdministrador(0, "pepe", "01/05/2000", "a1", "a1");
 		this.zonaFacturacion = MetodosFacturacion.getInstance();
 		this.zonaConfSistema = ConfiguracionDeSistema.getInstance();
 		this.zonaPersonal = GestionDePersonal.getInstance();

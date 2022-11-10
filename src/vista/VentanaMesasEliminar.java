@@ -5,28 +5,38 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JList;
 import javax.swing.border.TitledBorder;
+
+import capaDeDatos.Mesa;
+import capaDeNegocios.Local;
+
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 
 public class VentanaMesasEliminar extends JFrame implements IVista {
 	private JButton btnVolver;
 	private JPanel panelVolver;
-	private JList listMesas;
+	private JList<Mesa> listMesas;
 	private JPanel panelMesas;
 	private JButton btnEliminar;
+	private DefaultListModel <Mesa> mesas= new DefaultListModel<Mesa>();
 
 	public VentanaMesasEliminar() {
+		
+		mesas.addAll(Local.getInstance().getMesas());
+		
 		getContentPane().setLayout(new GridLayout(2, 0, 0, 0));
 		
 		panelMesas = new JPanel();
 		panelMesas.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Mesas", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		getContentPane().add(panelMesas);
 		
-		listMesas = new JList();
+		listMesas = new JList<Mesa>();
+		listMesas.setModel(mesas);
 		panelMesas.add(listMesas);
 		
 		panelVolver = new JPanel();
@@ -49,6 +59,16 @@ public class VentanaMesasEliminar extends JFrame implements IVista {
 		btnVolver.addActionListener(actionListener);
 		
 	}
+	
+	public void addMesa(Mesa mesa) {
+		mesas.addElement(mesa); 
+		this.validate(); 
+	}
+	
+	public void removeMesa(Mesa mesa) {
+		mesas.removeElement(mesa);
+		this.validate();
+	}
 
 	@Override
 	public void esconder() {
@@ -58,5 +78,9 @@ public class VentanaMesasEliminar extends JFrame implements IVista {
 	@Override
 	public void mostrar() {
 		this.setVisible(true);		
+	}
+	
+	public Mesa getMesaSeleccionada() {
+		return this.listMesas.getSelectedValue();
 	}
 }

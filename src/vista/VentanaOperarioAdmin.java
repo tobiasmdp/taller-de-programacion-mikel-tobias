@@ -79,6 +79,7 @@ public class VentanaOperarioAdmin extends JFrame implements IVista, MouseListene
 		btnMozoMesa = new JButton("Asignar Mozo a Mesa");
 		btnMozoMesa.addMouseListener(this);
 		this.btnMozoMesa.setActionCommand("MOZOMESA");
+		btnMozoMesa.setEnabled(false);
 		panelMozo_Mesa.add(btnMozoMesa);
 		
 		panelVerEstadisticas = new JPanel();
@@ -159,6 +160,10 @@ public class VentanaOperarioAdmin extends JFrame implements IVista, MouseListene
 		this.setVisible(true);
 	}
 
+
+	public JButton getBtnMozoMesa() {
+		return btnMozoMesa;
+	}
 
 	@Override
 	public void esconder() {

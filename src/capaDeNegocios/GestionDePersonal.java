@@ -18,7 +18,7 @@ private static GestionDePersonal instance=null;
 		return instance;
 	}
 	
-	public void altaOperario(String nombreApellido, Calendar nacimiento, String nombreUsuario, String password) {
+	public void altaOperario(String nombreApellido, String nacimiento, String nombreUsuario, String password) {
 		int id;
 		ArrayList<Operario> operarios = Local.getInstance().getOperarios();
 		if (operarios.isEmpty()) {
@@ -32,6 +32,7 @@ private static GestionDePersonal instance=null;
 	}
 
 	public void bajaOperario(Operario operario) {
+		Local.getInstance().getOperarios().remove(operario);
 	}
 
 	public void modificaOperario(Operario operario, String accion, String valor) {
@@ -45,18 +46,14 @@ private static GestionDePersonal instance=null;
 		case "password":
 			operario.setPassword(valor);
 			break;
-		}
-	}
-
-	public void modificaOperario(Operario operario, String accion, Calendar valor) {
-		switch (accion) {
 		case "nacimiento":
 			operario.setNacimiento(valor);
 			break;
 		}
 	}
 
-	public void altaMozo(String nombreApellido, Calendar nacimiento, int cantHijos) {
+
+	public void altaMozo(String nombreApellido, String nacimiento, int cantHijos) {
 		int id;
 		ArrayList<Mozo> mozos = Local.getInstance().getMozos();
 		if (mozos.isEmpty()) {
@@ -78,18 +75,11 @@ private static GestionDePersonal instance=null;
 		case "nombreApellido":
 			mozo.setNombreApellido(valor);
 			break;
-		default:
-			Raise exception;
-		}
-	}
-	
-	public void modificaMozo(Mozo mozo, String accion, Calendar valor) {
-		switch (accion) {
-		case "nacimiento":
-			mozo.setNacimiento(valor);
+		case "estado":
+			mozo.setEstado(valor);
 			break;
 		default:
-			Raise exception;
+			//Raise exception;
 		}
 	}
 	
@@ -99,7 +89,7 @@ private static GestionDePersonal instance=null;
 			mozo.setCantHijos(valor);
 			break;
 		default:
-			Raise exception;
+			//Raise exception;
 		}
 	}
 }
