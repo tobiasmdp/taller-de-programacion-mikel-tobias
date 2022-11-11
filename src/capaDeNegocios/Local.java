@@ -286,13 +286,13 @@ public class Local extends Observable {
 		return formasDePago;
 	}
 	
-	public void guardarAgencia(String nombreArchivo) {
+	public void guardarLocal(String nombreArchivo) {
 		IPersistencia persistencia = new PersistenciaXML();
 		try {
 			persistencia.abrirOutput(nombreArchivo);
 			System.out.println(nombreArchivo + " creado.");
-			LocalDTO agenciaDTO = UtilLocal.LocalDTOFromLocal();
-			persistencia.escribir(agenciaDTO);
+			LocalDTO localDTO = UtilLocal.LocalDTOFromLocal();
+			persistencia.escribir(localDTO);
 			System.out.println("Exito al grabar.");
 			persistencia.cerrarOutput();
 			System.out.println("Exito al cerrar.");
@@ -303,13 +303,13 @@ public class Local extends Observable {
 		}
 	}
 	
-	public void cargarAgencia(String nombreArchivo) {
+	public void cargarLocal(String nombreArchivo) {
 		IPersistencia persistencia = new PersistenciaXML();
 		try {
 			persistencia.abrirInput(nombreArchivo);
 			System.out.println(nombreArchivo + " abierto.");
-			LocalDTO agenciaDTO = (LocalDTO) persistencia.leer();
-			UtilLocal.LocalFromLocalDTO(agenciaDTO);
+			LocalDTO localDTO = (LocalDTO) persistencia.leer();
+			UtilLocal.LocalFromLocalDTO(localDTO);
 			System.out.println("Exito al leer.");
 			persistencia.cerrarInput();
 			System.out.println("Exito al cerrar.");
