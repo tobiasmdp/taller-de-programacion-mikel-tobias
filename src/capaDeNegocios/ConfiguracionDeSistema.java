@@ -19,13 +19,19 @@ public class ConfiguracionDeSistema {
 	private static ConfiguracionDeSistema instance=null;
 	
 	private ConfiguracionDeSistema () {}
-
+	
+	/**
+	 * @return instancia de este SubSingleton para separar los metodos
+	 */
 	public static ConfiguracionDeSistema getInstance() { // Singelton
 		if (instance==null) 
 			instance=new ConfiguracionDeSistema();
 		return instance;
 	}
 	
+	/**
+	 *  Se crea una nueva mesa
+	 */
 	public void altaMesa() {
 		int id;
 		Mesa mesa;
@@ -40,10 +46,22 @@ public class ConfiguracionDeSistema {
 		Local.getInstance().getMesas().add(mesa);
 	}
 	
+	/**
+	 * Se elimina una mesa
+	 * 
+	 * @param mesa distinto de null
+	 */
 	public void bajaMesa(Mesa mesa) {
 		Local.getInstance().getMesas().remove(mesa);
 	}
 	
+	/**
+	 * 
+	 * Se modifica una mesa (no se usa)
+	 * @param mesa distinto de null
+	 * @param accion distinto de null
+	 * @param valor distinto de null
+	 */
 	public void modificaMesa(Mesa mesa, String accion, int valor) {
 		switch (accion) {
 		case "comensales":
@@ -54,6 +72,13 @@ public class ConfiguracionDeSistema {
 		}
 	}
 	
+	/**
+	 * 
+	 * Se modifica el estado de una mesa
+	 * @param mesa distinto de null
+	 * @param accion distinto de null
+	 * @param valor distinto de null
+	 */
 	public void modificaMesa(Mesa mesa, String accion, String valor) {
 		switch (accion) {
 		case "estado":
@@ -64,7 +89,14 @@ public class ConfiguracionDeSistema {
 		}
 	}
 	
-	
+	/**
+	 * Se crea un nuevo producto
+	 * 
+	 * @param stock distinto de null
+	 * @param nombre distinto de null
+	 * @param precioCosto distinto de null
+	 * @param precioVenta distinto de null
+	 */
 	public void altaProducto(int stock, String nombre, float precioCosto, float precioVenta) {
 		int id;
 		Producto producto;
@@ -79,10 +111,21 @@ public class ConfiguracionDeSistema {
 		Local.getInstance().getProductos().add(producto);
 	}
 	
+	/**
+	 * Se elimina un producto
+	 * 
+	 * @param producto distinto de null
+	 */
 	public void bajaProductos(Producto producto) {
 		Local.getInstance().getProductos().remove(producto);
 	}
 	
+	/**  
+	 * Se modifica el stock de un producto
+	 * @param producto distinto de null
+	 * @param accion distinto de null
+	 * @param valor distinto de null
+	 */
 	public void modificaProducto(Producto producto, String accion, int valor) {
 		switch (accion) {
 		case "stock":
@@ -93,6 +136,11 @@ public class ConfiguracionDeSistema {
 		}
 	}
 	
+	/** Se modifican el nombre de los productos
+	 * @param producto distinto de null
+	 * @param accion distinto de null
+	 * @param valor distinto de null
+	 */
 	public void modificaProducto(Producto producto, String accion, String valor) {
 		switch (accion) {
 		case "nombre":
@@ -102,7 +150,11 @@ public class ConfiguracionDeSistema {
 		//	Raise exception;
 		}
 	}
-	
+	/** Se modifican los precios de los productos
+	 * @param producto distinto de null
+	 * @param accion distinto de null
+	 * @param valor distinto de null
+	 */
 	public void modificaProducto(Producto producto, String accion, float valor) {
 		switch (accion) {
 		case "precioCosto":

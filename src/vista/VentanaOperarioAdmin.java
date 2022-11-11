@@ -57,7 +57,8 @@ public class VentanaOperarioAdmin extends JFrame implements IVista, MouseListene
 		this.btnPromocionProducto.addActionListener(actionListener);
 		this.btnPromocionTemporal.addActionListener(actionListener);
 		this.btnVolver.addActionListener(actionListener);
-		//this.actionListener = actionListener;
+		this.btnPersistir.addActionListener(actionListener);
+		this.actionListener = actionListener;
 	}
 
 	/**

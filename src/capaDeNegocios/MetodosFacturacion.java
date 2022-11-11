@@ -19,24 +19,54 @@ public class MetodosFacturacion {
 
 	private MetodosFacturacion() {
 	}// constructor
-
+	
+	/**
+	 * @return instancia de este SubSingleton para separar los metodos
+	 */
 	public static MetodosFacturacion getInstance() {
 		if (MetodosFacturacion.instance == null)
 			MetodosFacturacion.instance = new MetodosFacturacion();
 		return MetodosFacturacion.instance;
 	}
 
+	/**
+	 * Se crea la promocion de los productos
+	 * 
+	 * @param producto distinto de null
+	 * @param diaProm distinto de null
+	 * @param dosXuno distinto de null
+	 * @param descuentoCantMin distinto de null
+	 * @param cantidadMinima distinto de null
+	 * @param descCantMin distinto de null
+	 * @param activa distinto de null
+	 */
 	public void altaPromocionProducto(Producto producto, String diaProm, boolean dosXuno, boolean descuentoCantMin,
 			int cantidadMinima, float descCantMin, boolean activa) {
 		PromocionProducto aux = new PromocionProducto(producto, diaProm, dosXuno, descuentoCantMin, cantidadMinima,
 				descCantMin, activa);
 		Local.getInstance().getPromocionesProductos().add(aux);
 	}
-
+	
+	/**
+	 * Se elimina la promocion de los productos
+	 * 
+	 * @param prom distinto de null
+	 */
 	public void bajaPromocionProducto(PromocionProducto prom) {
 		Local.getInstance().getPromocionesProductos().remove(prom);
 	}
 
+	/**
+	 * Se modifican todos los parametros de la promocion de los productos
+	 * 
+	 * @param prom distinto de null
+	 * @param diaProm distinto de null
+	 * @param dosXuno distinto de null
+	 * @param descuentoCantMin distinto de null
+	 * @param porcentajeCantMin distinto de null
+	 * @param cantidadMinima distinto de null
+	 * @param activa distinto de null
+	 */
 	public void modificacionPromocionProducto(PromocionProducto prom, String diaProm, boolean dosXuno,
 			boolean descuentoCantMin, float porcentajeCantMin, int cantidadMinima, boolean activa) {
 		prom.setDiaProm(diaProm);
@@ -47,17 +77,43 @@ public class MetodosFacturacion {
 		prom.setActiva(activa);
 	}
 
+	/**
+	 * Se crea una nueva promocion temporal
+	 * 
+	 * @param nombre distinto de null
+	 * @param formaPago distinto de null
+	 * @param porcentajeDesc distinto de null
+	 * @param diasDePromo distinto de null
+	 * @param activa distinto de null
+	 * @param acumulable distinto de null
+	 */
 	public void altaPromocionTemporal(String nombre, String formaPago, int porcentajeDesc, String diasDePromo,
 			boolean activa, boolean acumulable) {
 		PromocionTemporal aux = new PromocionTemporal(nombre, formaPago, porcentajeDesc, diasDePromo, activa,
 				acumulable);
 		Local.getInstance().getPromocionesTemporales().add(aux);
 	}
-
+	
+	/**
+	 * Se elimina una promocion temporal
+	 * 
+	 * @param prom distinto de null
+	 */
 	public void bajaPromocionTemporal(PromocionTemporal prom) {
 		Local.getInstance().getPromocionesTemporales().remove(prom);
 	}
 
+	/**
+	 * Se modifica una promocion temporal
+	 * 
+	 * @param prom distinto de null
+	 * @param nombre distinto de null
+	 * @param formaPago distinto de null
+	 * @param porcentajeDesc distinto de null
+	 * @param diasDePromo distinto de null
+	 * @param activa distinto de null
+	 * @param acumulable distinto de null
+	 */
 	public void modificacionPromocionTemporal(PromocionTemporal prom, String nombre, String formaPago,
 			int porcentajeDesc, String diasDePromo, boolean activa, boolean acumulable) {
 		prom.setNombre(nombre);
@@ -68,6 +124,15 @@ public class MetodosFacturacion {
 		prom.setAcumulable(acumulable);
 	}
 
+	/**
+	 * Se genera una factura
+	 * 
+	 * @param fecha distinto de null, la fecha del dia
+	 * @param diaSemana distinto de null, el dia en que se hizo la factura
+	 * @param comanda distinto de null
+	 * @param metodoDePago distinto de null
+	 * @return la factura generada
+	 */
 	public Factura generacionDeFactura(Calendar fecha, String diaSemana, Comanda comanda, String metodoDePago) {
 		Factura aux;
 		float tot = 0, min, valor;
@@ -134,6 +199,14 @@ public class MetodosFacturacion {
 	}
 
 	// precondicion: la cantidad es positiva
+	/**
+	 * Se crea un pedido
+	 * 
+	 * @param hoy distinto de null
+	 * @param cantidad distinto de null, y positivo
+	 * @param producto distinto de null
+	 * @return el nuevo pedido, de no ser asi no se 
+	 */
 	public Pedido altaPedido(String hoy, int cantidad, Producto producto) {
 		Pedido nuevo = null;
 		if (producto.getStock() - cantidad >= 0) {
@@ -143,17 +216,36 @@ public class MetodosFacturacion {
 		return nuevo;
 	}
 
+	/**
+	 * Se da de baja un pedido
+	 * @param comanda distinto de null
+	 * @param pedido distinto de null
+	 */
 	public void bajaPedido(Comanda comanda, Pedido pedido) {
 		comanda.getListaPedidos().remove(pedido);
 	}
 
+	/**
+	 * Se crea una comanda
+	 * 
+	 * @param mesa distinto de null, tiene que estar libre
+	 * @param pedido distinto de null 
+	 * @return nueva comanda
+	 */
 	public Comanda altaComanda(Mesa mesa, Pedido pedido) {
 		Comanda nuevo = new Comanda(mesa, pedido, true);
 		mesa.setEstado("Ocupada");
 		Local.getInstance().getComandas().add(nuevo);
 		return nuevo;
 	}
-
+	
+	/**
+	 * Se da de baja la comanda y se da de baja la comanda
+	 * 
+	 * @param comanda distinto de null 
+	 * @param metodoDePago distinto de null
+	 * @return factura generada
+	 */
 	public Factura bajaComanda(Comanda comanda, String metodoDePago) {
 
 		Calendar ahora = new GregorianCalendar();

@@ -49,6 +49,10 @@ public class Local extends Observable {
 	private MetodosFacturacion zonaFacturacion;
 	private ConfiguracionDeSistema zonaConfSistema;
 
+	
+	/**
+	 * Constructor Del local, es un singleton
+	 */
 	private Local() {
 		this.nombreLocal = "Local1";
 		this.sueldo = 999;
@@ -63,10 +67,16 @@ public class Local extends Observable {
 		this.zonaPersonal = GestionDePersonal.getInstance();
 	}
 
+	/**
+	 * @return Retorna una relacion Mesa_Mozo
+	 */
+	
 	public ArrayList<AsignacionDiaria> getAsignacionDiaria() {
 		return asignacionDiaria;
 	}
-
+	/**
+	 * @return Se instancia el singleton, retorna siempre el Local
+	 */
 	public static Local getInstance() { // Singelton
 		if (instance == null)
 			instance = new Local();
@@ -118,6 +128,11 @@ public class Local extends Observable {
 	}
 
 	// pre-condiciones: mesa != null
+	
+	/**
+	 * @param mesa no puede ser null
+	 * @return se arma la comanda para la mesa
+	 */
 	public Comanda getComandaByMesa(Mesa mesa) {
 		Comanda comanda = null;
 		int i = 0;
@@ -177,6 +192,9 @@ public class Local extends Observable {
 	
 	
 	//pre: mozos no esta vacia
+	/**
+	 * @return el mozo con el promedio maximo
+	 */
 	public Mozo getMozoMaxPromedio() {
 		float max = -1;
 		Mozo mozo= null;
@@ -189,7 +207,10 @@ public class Local extends Observable {
 		return mozo;
 	}
 
-	//pre: mozos no esta vacia
+	//pre: 
+	/**mozos no esta vacia
+	 * @return el mozo con el promedio minimo
+	 */
 	public Mozo getMozoMinPromedio() {
 		float min = 99999;
 		Mozo mozo= null;
@@ -203,6 +224,11 @@ public class Local extends Observable {
 	}
 	
 	// precondiciones: nombreUsuario y password != ""
+	/**
+	 * Login: el ingreso de todos los operarios
+	 * @param nombreUsuario no puede estar vacio
+	 * @param password no puede estar vacio
+	 */
 	public void login(String nombreUsuario, String password) {
 		this.setChanged();
 
@@ -228,9 +254,6 @@ public class Local extends Observable {
 				this.notifyObservers("USER INCORRECTO");
 			}
 		}
-	}
-
-	public void Logout(Operario operario) {
 	}
 
 	public String getDiaSemana(int numero) {

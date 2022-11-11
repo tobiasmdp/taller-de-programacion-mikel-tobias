@@ -85,7 +85,7 @@ public class ControladorOperarioAdmin implements ActionListener, Observer {
 			ControladorOperario controladorOperario = new ControladorOperario();
 		}
 		else if (comando.equals("PERSISTIR")) {
-			Local.getInstance().guardarAgencia(Main.nombreArchivo);
+			Local.getInstance().guardarLocal(Main.nombreArchivo);
 		}
 
 	}
