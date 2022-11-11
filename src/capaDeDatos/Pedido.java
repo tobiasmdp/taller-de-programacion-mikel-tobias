@@ -6,11 +6,11 @@ import java.util.Calendar;
 public class Pedido {
 private static int nroID=0;
 private int iDPedido;
-private Calendar fecha;
+private String fecha;
 private int cantidad;
 private Producto producto;
 
-public Pedido(Calendar fecha, int cantidad, Producto producto) {
+public Pedido(String fecha, int cantidad, Producto producto) {
 	nroID++;
 	this.iDPedido=nroID;
 	this.fecha = fecha;
@@ -23,11 +23,11 @@ public int getiDPedido() {
 }
 
 
-public Calendar getFecha() {
+public String getFecha() {
 	return fecha;
 }
 
-public void setFecha(Calendar fecha) {
+public void setFecha(String fecha) {
 	this.fecha = fecha;
 }
 

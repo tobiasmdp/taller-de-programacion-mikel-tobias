@@ -46,6 +46,9 @@ public class VentanaOperario extends JFrame implements IVista{
 	private JPanel panelAdministrador;
 	private DefaultListModel<Factura> facturas = new DefaultListModel<Factura>(); //modelo del arrayList 
 	private DefaultListModel<Mesa> mesas = new DefaultListModel<Mesa>();
+	private DefaultListModel<String> metodosDePago = new DefaultListModel<String>();
+	private JList<String> listMetodoPago;
+	private JPanel panel;
 
 	public void setActionListener(ActionListener actionListener) {
 		this.btnNuevoPedido.addActionListener(actionListener);
@@ -61,6 +64,7 @@ public class VentanaOperario extends JFrame implements IVista{
 		
 		mesas.addAll(Local.getInstance().getMesas());
 		facturas.addAll(Local.getInstance().getFacturas());
+		metodosDePago.addAll(Local.getInstance().getFormasDePago());
 		
 		setBounds(100, 100, 800, 700);
 		
@@ -98,15 +102,22 @@ public class VentanaOperario extends JFrame implements IVista{
 		panelCerrarComanda = new JPanel();
 		panelIzquierdaAbajo.add(panelCerrarComanda);
 		
-		btnCerrarComanda = new JButton("Cerrar Comanda");
-		panelCerrarComanda.add(btnCerrarComanda);
-		btnCerrarComanda.setActionCommand("CERRAR COMANDA");
+		this.listMetodoPago = new JList<String>();
+		this.listMetodoPago.setModel(metodosDePago);
+		this.panelCerrarComanda.add(this.listMetodoPago);
 		
 		panelAdministrador = new JPanel();
 		panelIzquierdaAbajo.add(panelAdministrador);
 		
+		btnCerrarComanda = new JButton("Cerrar Comanda");
+		this.panelAdministrador.add(this.btnCerrarComanda);
+		btnCerrarComanda.setActionCommand("CERRAR COMANDA");
+		
+		this.panel = new JPanel();
+		this.panelIzquierdaAbajo.add(this.panel);
+		
 		btnAdmin = new JButton("Administrador");
-		panelAdministrador.add(btnAdmin);
+		this.panel.add(this.btnAdmin);
 		btnAdmin.setActionCommand("ADMINISTRADOR");
 		this.btnAdmin.setEnabled(esAdmin); // si no es admin no muestra el boton administrador
 		
@@ -133,6 +144,11 @@ public class VentanaOperario extends JFrame implements IVista{
 		this.validate(); 
 	}
 	
+	public void addMetodoPago(String metodoPago) {
+		metodosDePago.addElement(metodoPago); 
+		this.validate(); 
+	}
+	
 	public void removeFactura(Factura factura) {
 		facturas.removeElement(factura);
 		this.validate();
@@ -142,6 +158,7 @@ public class VentanaOperario extends JFrame implements IVista{
 		mesas.removeElement(mesa);
 		this.validate();
 	}
+	
 	public Factura getFacturaSeleccionada() {
 		return this.listFaturas.getSelectedValue();
 	}
@@ -150,6 +167,10 @@ public class VentanaOperario extends JFrame implements IVista{
 		return this.listMesas.getSelectedValue();
 	}
 
+	public String getMetodoDePagoSeleccionado() {
+		return this.listMetodoPago.getSelectedValue();
+	}
+	
 	public Component getBtnAdmin() {
 		return this.btnAdmin;
 	}

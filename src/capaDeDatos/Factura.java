@@ -31,9 +31,7 @@ public class Factura {
 
 	@Override
 	public String toString() {
-		return "Factura [iDFactura=" + iDFactura + ", fecha=" + fecha + ", mesa=" + mesa + ", listaProductos="
-				+ listaProductos + ", total=" + total + ", metodoPago=" + metodoPago + ", totPromocionesTemp="
-				+ totPromocionesTemp + ", totPromocionesProd=" + totPromocionesProd + "]";
+		return "Factura [iD=" + iDFactura + ", mesa=" + mesa.getId() + ", metodoPago=" + metodoPago + "||"+ totPromocionesTemp + "||"+ totPromocionesProd;
 	}
 
 	public int getiDFactura() {

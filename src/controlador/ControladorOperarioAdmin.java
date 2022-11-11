@@ -65,7 +65,7 @@ public class ControladorOperarioAdmin implements ActionListener, Observer {
 		}
 		else if (comando.equals("PRODUCTOS")) {
 			this.vista.esconder();
-			//ControladorProductos controladorProductos = new ControladorProductos();
+			ControladorProducto controladorProducto = new ControladorProducto();
 		}
 		else if(comando.equals("MOZOS")) {
 			this.vista.esconder();

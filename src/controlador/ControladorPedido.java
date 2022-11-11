@@ -5,12 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.Observable;
 import java.util.Observer;
 
 import capaDeDatos.Comanda;
 import capaDeDatos.Mesa;
 import capaDeDatos.Operario;
+import capaDeDatos.Pedido;
 import capaDeDatos.Producto;
 import capaDeNegocios.Local;
 import capaDeNegocios.MetodosFacturacion;
@@ -28,7 +30,7 @@ public class ControladorPedido implements ActionListener, Observer {
 
 	public ControladorPedido(Mesa mesa) {
 
-		this.mesa = mesa;
+		this.mesa= mesa;
 		
 		this.modelo = Local.getInstance(); // arranca el modelo
 		this.modelo.addObserver(this);
@@ -49,17 +51,30 @@ public class ControladorPedido implements ActionListener, Observer {
 	//ActCommand: VOLVER -> No tiene
 	@Override
 	public void actionPerformed(ActionEvent e) { // escucha la vista
-		int cantidad; 
+		int cantidad;
+		Pedido pedido;
+		Comanda comanda;
 		Producto producto;
 		String comando = e.getActionCommand();
 		if (comando.equals("ACEPTAR")) {
 			cantidad = this.vista.getCantidad();
-			if (cantidad > 0) {
+			if (cantidad > 0) { //valido cantidad 
 				producto = this.vista.getProductoSeleccionado();
-				if (producto.getStock() >= cantidad) {
-					producto.setStock(producto.getStock() - cantidad);
-					this.vista.esconder();
-					ControladorOperario controladorOperario = new ControladorOperario();					
+				if (producto != null){ //valido que haya elegido un producto
+					
+					pedido = MetodosFacturacion.getInstance().altaPedido(new GregorianCalendar().toString(), cantidad, producto);
+					if (pedido != null) { //si se puede crear un pedido con ese producto
+						comanda = Local.getInstance().getComandaByMesa(mesa);
+						if (comanda == null) { // si la mesa no tiene comanda, la abre y pone el nuevo pedido
+							comanda = MetodosFacturacion.getInstance().altaComanda(mesa,pedido);
+						}
+						else { //sino añade el pedido
+							MetodosFacturacion.getInstance().modificacionComanda(comanda, pedido, true); //true gregar y false eliminar
+						}
+						this.vista.esconder();
+						ControladorOperario controladorOperario = new ControladorOperario();					
+					
+					}
 				}
 			}
 		}

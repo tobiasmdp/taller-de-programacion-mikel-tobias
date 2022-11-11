@@ -30,6 +30,7 @@ public class VentanaMesasModificar extends JFrame implements IVista {
 	private JButton btnInactivo;
 	private JPanel panelMesas;
 	private DefaultListModel <Mesa> mesas= new DefaultListModel<Mesa>();
+	private ActionListener actionListener;
 
 	public VentanaMesasModificar() {
 		
@@ -75,6 +76,7 @@ public class VentanaMesasModificar extends JFrame implements IVista {
 		btnActivo.addActionListener(actionListener);
 		btnInactivo.addActionListener(actionListener);
 		btnVolver.addActionListener(actionListener);
+		this.actionListener = actionListener;
 		
 	}
 
