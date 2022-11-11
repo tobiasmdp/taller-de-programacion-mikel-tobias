@@ -35,7 +35,7 @@ public class VentanaOperarioABMNuevo extends JFrame implements IVista {
 
 	public VentanaOperarioABMNuevo() {
 		getContentPane().setLayout(new GridLayout(2, 0, 0, 0));
-		
+		setBounds(100, 100, 800, 700);
 		panelCreacion = new JPanel();
 		getContentPane().add(panelCreacion);
 		panelCreacion.setLayout(new GridLayout(0, 2, 0, 0));

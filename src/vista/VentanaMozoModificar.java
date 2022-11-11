@@ -51,7 +51,7 @@ public class VentanaMozoModificar extends JFrame implements IVista {
 		mozos.addAll(Local.getInstance().getMozos());
 		
 		getContentPane().setLayout(new GridLayout(2, 0, 0, 0));
-		
+		setBounds(100, 100, 800, 700);
 		panelMesas = new JPanel();
 		panelMesas.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Mozos", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		getContentPane().add(panelMesas);

@@ -45,7 +45,7 @@ public class VentanaOperarioABMModificar extends JFrame implements IVista {
 	public VentanaOperarioABMModificar() {
 		
 		operarios.addAll(Local.getInstance().getOperarios());
-		
+		setBounds(100, 100, 800, 700);
 		getContentPane().setLayout(new GridLayout(2, 0, 0, 0));
 		
 		panelMesas = new JPanel();

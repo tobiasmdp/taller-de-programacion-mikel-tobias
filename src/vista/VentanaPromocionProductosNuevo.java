@@ -56,7 +56,7 @@ public class VentanaPromocionProductosNuevo extends JFrame implements IVista {
 	public VentanaPromocionProductosNuevo() {
 		
 		productos.addAll(Local.getInstance().getProductos());
-		
+		setBounds(100, 100, 800, 700);
 		getContentPane().setLayout(new GridLayout(2, 0, 0, 0));
 		
 		panelCreacion = new JPanel();

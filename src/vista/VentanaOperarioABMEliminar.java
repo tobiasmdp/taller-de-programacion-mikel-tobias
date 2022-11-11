@@ -30,7 +30,7 @@ public class VentanaOperarioABMEliminar extends JFrame implements IVista {
 	public VentanaOperarioABMEliminar() {
 		
 		operarios.addAll(Local.getInstance().getOperarios());
-		
+		setBounds(100, 100, 800, 700);
 		getContentPane().setLayout(new GridLayout(2, 0, 0, 0));
 		
 		panelMozos = new JPanel();

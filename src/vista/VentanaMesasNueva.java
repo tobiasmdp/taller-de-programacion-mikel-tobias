@@ -17,7 +17,7 @@ public class VentanaMesasNueva extends JFrame implements IVista {
 
 	public VentanaMesasNueva() {
 		getContentPane().setLayout(new GridLayout(2, 0, 0, 0));
-		
+		setBounds(100, 100, 800, 700);
 		panelCreacion = new JPanel();
 		getContentPane().add(panelCreacion);
 		

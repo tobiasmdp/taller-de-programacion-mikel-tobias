@@ -35,7 +35,7 @@ public class VentanaMesasModificar extends JFrame implements IVista {
 	public VentanaMesasModificar() {
 		
 		mesas.addAll(Local.getInstance().getMesas());
-		
+		setBounds(100, 100, 800, 700);
 		getContentPane().setLayout(new GridLayout(2, 0, 0, 0));
 		
 		panelMesas = new JPanel();

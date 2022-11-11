@@ -32,11 +32,11 @@ public class VentanaPromocionTemporalEliminar extends JFrame implements IVista {
 	public VentanaPromocionTemporalEliminar() {
 		
 		PromocionesTemporales.addAll(Local.getInstance().getPromocionesTemporales());
-		
+		setBounds(100, 100, 800, 700);
 		getContentPane().setLayout(new GridLayout(2, 0, 0, 0));
 		
 		panelPromocionesTemporales = new JPanel();
-		panelPromocionesTemporales.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "PromocionProducto", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panelPromocionesTemporales.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "PromocionTemporal", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		getContentPane().add(panelPromocionesTemporales);
 		
 		listPromocionTemporal = new JList<PromocionTemporal>();

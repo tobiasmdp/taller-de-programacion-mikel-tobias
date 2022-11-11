@@ -60,6 +60,7 @@ public class ControladorPromocionTemporalModificar implements ActionListener, Ob
 				else
 					acumulable=false;
 			MetodosFacturacion.getInstance().modificacionPromocionTemporal(this.vista.getListPromocionTemporal(),this.vista.getTxtNombre().getText(),formaDePago,porcentaje,this.vista.getTxtDiaPromo().getText(),activa,acumulable);
+			this.vista.actualizaLista();
 		}
 		else if (comando.equals("VOLVER")) {
 			this.vista.esconder();

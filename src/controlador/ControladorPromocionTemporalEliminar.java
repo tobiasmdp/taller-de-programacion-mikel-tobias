@@ -53,7 +53,7 @@ public class ControladorPromocionTemporalEliminar implements ActionListener, Obs
 		}
 		else if (comando.equals("VOLVER")) {
 			this.vista.esconder();
-			ControladorPromocionProducto controladorPromocionProducto = new ControladorPromocionProducto();
+			ControladorPromocionTemporal controladorPromocionTemporal = new ControladorPromocionTemporal();
 		}
 	}
 

@@ -31,7 +31,7 @@ public class VentanaPromocionProductoEliminar extends JFrame implements IVista {
 	public VentanaPromocionProductoEliminar() {
 		
 		PromocionesProducto.addAll(Local.getInstance().getPromocionesProductos());
-		
+		setBounds(100, 100, 800, 700);
 		getContentPane().setLayout(new GridLayout(2, 0, 0, 0));
 		
 		panelMozos = new JPanel();

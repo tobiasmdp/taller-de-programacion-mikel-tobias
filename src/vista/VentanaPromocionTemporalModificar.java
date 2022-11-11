@@ -53,9 +53,10 @@ public class VentanaPromocionTemporalModificar extends JFrame implements IVista 
 
 	public VentanaPromocionTemporalModificar() {
 		
-		pagos.addAll(Local.getInstance().getFormasDePagos());
+		pagos.addAll(Local.getInstance().getFormasDePago());
 		promocionTemporal.addAll(Local.getInstance().getPromocionesTemporales());
 		
+		setBounds(100, 100, 800, 700);
 		getContentPane().setLayout(new GridLayout(2, 0, 0, 0));
 		
 		panelCreacion = new JPanel();
