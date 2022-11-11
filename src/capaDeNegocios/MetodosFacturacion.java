@@ -7,6 +7,7 @@ import java.util.GregorianCalendar;
 import capaDeDatos.Comanda;
 import capaDeDatos.Factura;
 import capaDeDatos.Mesa;
+import capaDeDatos.Mozo;
 import capaDeDatos.Pedido;
 import capaDeDatos.Producto;
 import capaDeDatos.PromocionProducto;
@@ -36,7 +37,8 @@ public class MetodosFacturacion {
 		Local.getInstance().getPromocionesProductos().remove(prom);
 	}
 
-	public void modificacionPromocionProducto(PromocionProducto prom, String diaProm, boolean dosXuno, boolean descuentoCantMin, float porcentajeCantMin, int cantidadMinima, boolean activa) {
+	public void modificacionPromocionProducto(PromocionProducto prom, String diaProm, boolean dosXuno,
+			boolean descuentoCantMin, float porcentajeCantMin, int cantidadMinima, boolean activa) {
 		prom.setDiaProm(diaProm);
 		prom.setDosXuno(dosXuno);
 		prom.setDescuentoCantMin(descuentoCantMin);
@@ -70,6 +72,7 @@ public class MetodosFacturacion {
 		Factura aux;
 		float tot = 0, min, valor;
 		Producto auxproducto;
+		Mozo mozo;
 		ArrayList<PromocionProducto> promsProducto = new ArrayList<PromocionProducto>();
 		ArrayList<PromocionTemporal> promsTemp = new ArrayList<PromocionTemporal>();
 		int i = 0, j = 0, bandera = -1, cantmin;
@@ -120,14 +123,17 @@ public class MetodosFacturacion {
 			} else
 				tot += comanda.getListaPedidos().get(i).getCantidad() * auxproducto.getPrecioVenta();
 		} // hasta aca es la promo producto
-		if (bandera > -1)
+		if (bandera > -1) {
 			tot = tot - tot * Local.getInstance().getPromocionesTemporales().get(bandera).getPorcentajeDesc() / 100;
+		}
+		mozo = Local.getInstance().getMozoByMesa(comanda.getMesa());
+		mozo.setAcumulados(mozo.getAcumulados() + tot);
+		mozo.setMesasAtentidas(mozo.getMesasAtentidas() + 1);
 		return aux = new Factura(fecha, comanda.getMesa(), comanda.getListaPedidos(), tot, metodoDePago, promsTemp,
 				promsProducto);
 	}
 
-	
-	//precondicion: la cantidad es positiva
+	// precondicion: la cantidad es positiva
 	public Pedido altaPedido(String hoy, int cantidad, Producto producto) {
 		Pedido nuevo = null;
 		if (producto.getStock() - cantidad >= 0) {
@@ -149,12 +155,12 @@ public class MetodosFacturacion {
 	}
 
 	public Factura bajaComanda(Comanda comanda, String metodoDePago) {
-		
+
 		Calendar ahora = new GregorianCalendar();
-		String diaSemana = Local.getInstance().getDiaSemana(ahora.DAY_OF_WEEK); 
-		
-		Local.getInstance().getComandas().remove(comanda);		
-		
+		String diaSemana = Local.getInstance().getDiaSemana(ahora.DAY_OF_WEEK);
+
+		Local.getInstance().getComandas().remove(comanda);
+
 		return generacionDeFactura(ahora, diaSemana, comanda, metodoDePago);
 	}
 

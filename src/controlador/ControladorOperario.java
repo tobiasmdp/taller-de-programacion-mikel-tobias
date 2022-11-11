@@ -10,6 +10,7 @@ import java.util.Observer;
 import capaDeDatos.Comanda;
 import capaDeDatos.Factura;
 import capaDeDatos.Mesa;
+import capaDeDatos.Mozo;
 import capaDeDatos.Operario;
 import capaDeNegocios.Local;
 import capaDeNegocios.MetodosFacturacion;
@@ -43,6 +44,7 @@ public class ControladorOperario implements ActionListener, Observer {
 	//
 	@Override
 	public void actionPerformed(ActionEvent e) { // escucha la vista
+		Mozo mozo;
 		Mesa mesa;
 		Comanda comanda;
 		String metodoPago;
@@ -52,14 +54,18 @@ public class ControladorOperario implements ActionListener, Observer {
 			this.vista.esconder();
 			ControladorOperarioAdmin controladorOperarioAdmin = new ControladorOperarioAdmin();
 		} else if (comando.equals("CERRAR COMANDA")) {
-			metodoPago =  this.vista.getMetodoDePagoSeleccionado();
-			if (metodoPago != null) { //necesita un metodo de pago
+			metodoPago = this.vista.getMetodoDePagoSeleccionado();
+			if (metodoPago != null) { // necesita un metodo de pago
 				mesa = this.vista.getMesaSeleccionada();
-				if (mesa != null) { //necesita una mesa
+				if (mesa != null) { // necesita una mesa
 					comanda = Local.getInstance().getComandaByMesa(mesa);
-					if (comanda != null) { //necesita una comanda
-						factura = MetodosFacturacion.getInstance().bajaComanda(comanda, metodoPago);						
-						this.vista.addFactura(factura);
+					if (comanda != null) { // necesita una comanda
+						mozo = Local.getInstance().getMozoByMesa(comanda.getMesa());
+						if (mozo != null) { // necesita un mozo
+							factura = MetodosFacturacion.getInstance().bajaComanda(comanda, metodoPago);
+							this.vista.addFactura(factura);
+							this.vista.recargar();
+						}
 					}
 				}
 			}

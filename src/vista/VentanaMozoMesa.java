@@ -8,12 +8,14 @@ import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JList;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 
+import capaDeDatos.AsignacionDiaria;
 import capaDeDatos.Mesa;
 import capaDeDatos.Mozo;
 import capaDeDatos.PromocionTemporal;
@@ -26,9 +28,9 @@ public class VentanaMozoMesa extends JFrame {
 
 	private JPanel contentPane;
 	private JList<Mesa> listMesa;
-	private DefaultListModel <Mesa> mesas= new DefaultListModel<Mesa>();
+	private DefaultListModel<Mesa> mesas = new DefaultListModel<Mesa>();
 	private JList<Mozo> listMozo;
-	private DefaultListModel <Mozo> mozos= new DefaultListModel<Mozo>();
+	private DefaultListModel<Mozo> mozos = new DefaultListModel<Mozo>();
 	private JButton btnCrear;
 	private JButton btnCancelar;
 	private JPanel panel;
@@ -38,7 +40,18 @@ public class VentanaMozoMesa extends JFrame {
 	private ActionListener actionListener;
 
 	public VentanaMozoMesa() {
-		mesas.addAll(Local.getInstance().getMesas());
+		
+		ArrayList<Mesa> mesasAsignadas = new ArrayList<Mesa>();
+		for (AsignacionDiaria asignacionDiariaActual: Local.getInstance().getAsignacionDiaria()) {
+			mesasAsignadas.add(asignacionDiariaActual.getMesa());
+		}
+		
+		for (Mesa mesaActual : Local.getInstance().getMesas()) {
+			if (! mesasAsignadas.contains(mesaActual)) {
+				mesas.addElement(mesaActual); //añado solo las mesas no asignadas
+			}
+		}
+			
 		mozos.addAll(Local.getInstance().getMozos());
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -78,14 +91,16 @@ public class VentanaMozoMesa extends JFrame {
 		this.btnCancelar = new JButton("Volver");
 		this.btnCancelar.setActionCommand("VOLVER");
 		this.panel_3.add(this.btnCancelar);
+		
+		this.setVisible(true);
 	}
 
 	public void setActionListener(ActionListener actionListener) {
 		this.btnCrear.addActionListener(actionListener);
 		this.btnCancelar.addActionListener(actionListener);
-		this.actionListener=actionListener;
+		this.actionListener = actionListener;
 	}
-	
+
 	public void esconder() {
 		this.setVisible(false);
 	}
@@ -99,20 +114,19 @@ public class VentanaMozoMesa extends JFrame {
 	}
 
 	public void mostrar() {
-		this.setVisible(true);		
+		this.setVisible(true);
 	}
-	
+
 	public void actualizaLista() {
 		this.validate();
 	}
-	
+
 	public void removeMozo(Mozo mozo) {
 		this.mozos.removeElement(mozo);
 	}
-	
+
 	public void removeMesa(Mesa mesa) {
 		this.mesas.removeElement(mesa);
-		}
-	
-	
+	}
+
 }

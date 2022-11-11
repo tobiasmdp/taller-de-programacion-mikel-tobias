@@ -134,6 +134,10 @@ public class VentanaOperario extends JFrame implements IVista{
 		this.setVisible(true);		
 	}
 	
+	public void recargar() {
+		this.validate();
+	}
+	
 	public void addFactura(Factura factura) {
 		facturas.addElement(factura);
 		this.validate();//hace un refresh de la interfaz, para que aparezca el nuevo item

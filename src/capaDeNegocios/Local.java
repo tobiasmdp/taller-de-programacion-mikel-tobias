@@ -123,7 +123,80 @@ public class Local extends Observable {
 		}
 		return comanda;
 	}
+	
+	// pre-condiciones: mesa != null
+	public Mozo getMozoByMesa(Mesa mesa) {
+		Mozo mozo= null;
+		int i = 0;
+		while (i < asignacionDiaria.size() && !(asignacionDiaria.get(i).getMesa().equals(mesa)))
+			i++;
+		if (i < asignacionDiaria.size()) {
+			mozo = asignacionDiaria.get(i).getMozo();
+		}
+		return mozo;
+	}
+	
+	
+	//pre: mozos no esta vacia
+	public Mozo getMozoMaxVentas() {
+		float max = -1;
+		Mozo mozo= null;
+		for (Mozo mozoActual :mozos) {
+			if (mozoActual.getAcumulados() > max) {
+				max = mozoActual.getAcumulados();
+				mozo = mozoActual;
+			}
+		}
+		if (mozo.getAcumulados() == 0) {
+			mozo = null;
+		}
+		return mozo;
+	}
 
+	
+	//pre: mozos no esta vacia
+	public Mozo getMozoMinVentas() {
+		float min = 99999;
+		Mozo mozo= null;
+		for (Mozo mozoActual :mozos) {
+			if (mozoActual.getAcumulados() < min) {
+				min = mozoActual.getAcumulados();
+				mozo = mozoActual;
+			}
+		}
+		if (mozo.getAcumulados() == 0) {
+			mozo = null;
+		}
+		return mozo;
+	}
+	
+	
+	//pre: mozos no esta vacia
+	public Mozo getMozoMaxPromedio() {
+		float max = -1;
+		Mozo mozo= null;
+		for (Mozo mozoActual :mozos) {
+			if ((mozoActual.getAcumulados()/mozoActual.getMesasAtentidas()) > max) {
+				max = (mozoActual.getAcumulados()/mozoActual.getMesasAtentidas());
+				mozo = mozoActual;
+			}
+		}
+		return mozo;
+	}
+
+	//pre: mozos no esta vacia
+	public Mozo getMozoMinPromedio() {
+		float min = 99999;
+		Mozo mozo= null;
+		for (Mozo mozoActual :mozos) {
+			if (mozoActual.getAcumulados()/mozoActual.getMesasAtentidas() < min) {
+				min = mozoActual.getAcumulados();
+				mozo = mozoActual;
+			}
+		}
+		return mozo;
+	}
+	
 	// precondiciones: nombreUsuario y password != ""
 	public void login(String nombreUsuario, String password) {
 		this.setChanged();

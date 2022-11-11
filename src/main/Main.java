@@ -25,6 +25,11 @@ public class Main {
 		ConfiguracionDeSistema.getInstance().altaProducto(10, "Pepeya", 400, 500);
 		ConfiguracionDeSistema.getInstance().altaProducto(10, "Papaya", 200, 300);
 		
+		GestionDePersonal.getInstance().altaMozo("Pepe", "mañana", 81);
+		GestionDePersonal.getInstance().altaMozo("Jhon", "DOe", 2);
+		
+
+	
 	}
 
 }

@@ -78,6 +78,8 @@ public class VentanaEmpresa extends JFrame {
 		btnVolver = new JButton("Volver");
 		this.btnVolver.setActionCommand("VOLVER");
 		panelVolver.add(btnVolver);
+		
+		this.setVisible(true);
 	}
 	
 	public void setActionListener(ActionListener actionListener) {
