@@ -12,10 +12,15 @@ import controlador.ControladorLogin;
 
 public class Main {
 
+	public static final String nombreArchivo = "Local.xml" ;
+	
 	public static void main(String[] args) {
 		@SuppressWarnings("unused")
 		ControladorLogin controladorLogin = new ControladorLogin();
 		GestionDePersonal.getInstance().altaOperario("pepe", "01/05/2000", "1", "1");
+		
+		
+		Local.getInstance().cargarAgencia(nombreArchivo);
 		
 		Local.getInstance().getMesas().add(new Mesa(0));
 		Local.getInstance().getMesas().add(new Mesa(1));
@@ -26,7 +31,7 @@ public class Main {
 		ConfiguracionDeSistema.getInstance().altaProducto(10, "Papaya", 200, 300);
 		
 		GestionDePersonal.getInstance().altaMozo("Pepe", "mañana", 81);
-		GestionDePersonal.getInstance().altaMozo("Jhon", "DOe", 2);
+		GestionDePersonal.getInstance().altaMozo("Jhon", "Doe", 2);
 		
 
 	

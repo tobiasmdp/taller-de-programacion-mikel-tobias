@@ -43,6 +43,7 @@ public class VentanaOperarioAdmin extends JFrame implements IVista, MouseListene
 	private JPanel panelMozos;
 	private JPanel panelPromocionProducto;
 	private JPanel panelPromocionTemporal;
+	private JButton btnPersistir;
 
 	public void setActionListener(ActionListener actionListener) {
 		this.btnArrancarDia.addActionListener(actionListener);
@@ -149,6 +150,10 @@ public class VentanaOperarioAdmin extends JFrame implements IVista, MouseListene
 		
 		panelVacio = new JPanel();
 		getContentPane().add(panelVacio);
+		
+		this.btnPersistir = new JButton("Persistir");
+		this.btnPersistir.setActionCommand("PERSISTIR");
+		this.panelVacio.add(this.btnPersistir);
 		
 		panelVolver = new JPanel();
 		getContentPane().add(panelVolver);

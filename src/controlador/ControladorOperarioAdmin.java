@@ -9,6 +9,7 @@ import java.util.Observer;
 
 import capaDeDatos.Operario;
 import capaDeNegocios.Local;
+import main.Main;
 import vista.VentanaLogin;
 import vista.VentanaOperario;
 import vista.VentanaOperarioAdmin;
@@ -82,6 +83,9 @@ public class ControladorOperarioAdmin implements ActionListener, Observer {
 		else if (comando.equals("VOLVER")) {
 			this.vista.esconder();
 			ControladorOperario controladorOperario = new ControladorOperario();
+		}
+		else if (comando.equals("PERSISTIR")) {
+			Local.getInstance().guardarAgencia(Main.nombreArchivo);
 		}
 
 	}

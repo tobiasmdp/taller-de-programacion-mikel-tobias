@@ -1,5 +1,6 @@
 package capaDeNegocios;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Observable;
@@ -16,6 +17,10 @@ import capaDeDatos.Producto;
 import capaDeDatos.PromocionProducto;
 import capaDeDatos.PromocionTemporal;
 import controlador.ControladorLogin;
+import persistencia.IPersistencia;
+import persistencia.LocalDTO;
+import persistencia.PersistenciaXML;
+import persistencia.UtilLocal;
 
 @SuppressWarnings("deprecation")
 public class Local extends Observable {
@@ -279,6 +284,43 @@ public class Local extends Observable {
 
 	public ArrayList<String> getFormasDePago() {
 		return formasDePago;
+	}
+	
+	public void guardarAgencia(String nombreArchivo) {
+		IPersistencia persistencia = new PersistenciaXML();
+		try {
+			persistencia.abrirOutput(nombreArchivo);
+			System.out.println(nombreArchivo + " creado.");
+			LocalDTO agenciaDTO = UtilLocal.LocalDTOFromLocal();
+			persistencia.escribir(agenciaDTO);
+			System.out.println("Exito al grabar.");
+			persistencia.cerrarOutput();
+			System.out.println("Exito al cerrar.");
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void cargarAgencia(String nombreArchivo) {
+		IPersistencia persistencia = new PersistenciaXML();
+		try {
+			persistencia.abrirInput(nombreArchivo);
+			System.out.println(nombreArchivo + " abierto.");
+			LocalDTO agenciaDTO = (LocalDTO) persistencia.leer();
+			UtilLocal.LocalFromLocalDTO(agenciaDTO);
+			System.out.println("Exito al leer.");
+			persistencia.cerrarInput();
+			System.out.println("Exito al cerrar.");
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
