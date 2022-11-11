@@ -32,7 +32,7 @@ public void bajaPromocionProducto(PromocionProducto prom) {
 	Local.getInstance().getPromocionesProductos().remove(prom);
 }
 
-public void modificacionPromocionProducto(PromocionProducto prom, String diaProm, boolean dosXuno, boolean descuentoCantMin, float porcentajeCantMin, boolean activa, int cantidadMinima) {
+public void modificacionPromocionProducto(PromocionProducto prom, String diaProm, boolean dosXuno, boolean descuentoCantMin, float porcentajeCantMin, int cantidadMinima,  boolean activa) {
 	prom.setDiaProm(diaProm);
 	prom.setDosXuno(dosXuno);
 	prom.setDescuentoCantMin(descuentoCantMin);
@@ -108,7 +108,7 @@ public Factura generacionDeFactura(Calendar fecha, String diaSemana,Comanda coma
 
 public Pedido altaPedido(Calendar hoy,int cantidad,Producto producto)  {
 	if (producto.getStock()-cantidad<=0)
-		new ExcepcionNoDisponible();
+		return null;
 	else {
 	producto.setStock(producto.getStock()-cantidad);
 	Pedido nuevo=new Pedido(hoy,cantidad,producto);

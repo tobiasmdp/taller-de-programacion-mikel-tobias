@@ -73,7 +73,7 @@ public class ControladorOperarioAdmin implements ActionListener, Observer {
 		}
 		else if (comando.equals("PROMOCION PRODUCTO")) {
 			this.vista.esconder();
-			//ControladorPromocionProducto controladorPromocionProducto = new ControladorPromocionProducto();
+			ControladorPromocionProducto controladorPromocionProducto = new ControladorPromocionProducto();
 		}
 		else if (comando.equals("PROMOCION TEMPORAL")) {
 			this.vista.esconder();
