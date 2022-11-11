@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -24,6 +26,9 @@ public class VentanaEmpresa extends JFrame {
 	private JPanel panelTxtSueldo;
 	private JPanel panelNombreEmpresa;
 	private JPanel panelTxtNombreEmpresa;
+	private JButton btnConfirmar;
+	
+	private ActionListener actionListener;
 
 	public VentanaEmpresa() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,11 +68,40 @@ public class VentanaEmpresa extends JFrame {
 		panelVacio = new JPanel();
 		contentPane.add(panelVacio);
 		
+		btnConfirmar = new JButton("Confirmar");
+		this.btnConfirmar.setActionCommand("CONFIRMAR");
+		panelVacio.add(btnConfirmar);
+		
 		panelVolver = new JPanel();
 		contentPane.add(panelVolver);
 		
 		btnVolver = new JButton("Volver");
+		this.btnVolver.setActionCommand("VOLVER");
 		panelVolver.add(btnVolver);
 	}
+	
+	public void setActionListener(ActionListener actionListener) {
+		this.btnConfirmar.addActionListener(actionListener);
+		this.btnVolver.addActionListener(actionListener);
+		this.actionListener = actionListener;
+	}
+	
+	public void esconder() {
+		this.setVisible(false);
+	}
+
+	public void mostrar() {
+		this.setVisible(true);		
+	}
+
+	public JTextField getTxtNombreEmpresa() {
+		return txtNombreEmpresa;
+	}
+
+	public JTextField getTxtSueldo() {
+		return txtSueldo;
+	}
+	
+	
 
 }

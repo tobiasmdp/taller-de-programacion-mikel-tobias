@@ -58,6 +58,10 @@ public class Local extends Observable {
 		this.zonaPersonal = GestionDePersonal.getInstance();
 	}
 
+	public ArrayList<AsignacionDiaria> getAsignacionDiaria() {
+		return asignacionDiaria;
+	}
+
 	public static Local getInstance() { // Singelton
 		if (instance == null)
 			instance = new Local();

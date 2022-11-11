@@ -45,15 +45,15 @@ public class ControladorOperarioAdmin implements ActionListener, Observer {
 		}
 		else if(comando.equals("MOZOMESA")) {
 			this.vista.esconder();
-			//ControladorMozoMesa controladorMozoMesa= new ControladorMozoMesa();
+			ControladorMozoMesa controladorMozoMesa= new ControladorMozoMesa();
 		}
 		else if (comando.equals("VER ESTADISTICAS")) {
 			this.vista.esconder();
-			//ControladorEstadistica controladorEstadistica= new ControladorEstadistica();
+			ControladorEstadistica controladorEstadistica= new ControladorEstadistica();
 		}
 		else if (comando.equals("CONFIGURAR EMPRESA")) {
 			this.vista.esconder();
-			//ControladorEmpresa controladorEmpresa= new ControladorEmpresa();
+			ControladorEmpresa controladorEmpresa= new ControladorEmpresa();
 		}
 		else if (comando.equals("OPERARIOSABM")) {
 			this.vista.esconder();
