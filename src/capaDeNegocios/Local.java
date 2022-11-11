@@ -25,11 +25,12 @@ public class Local extends Observable {
 	public static final int prefijoMesa = 30000;
 	public static final int prefijoProducto = 40000;
 
-	private boolean admin; //indica si quien logeo es admin o no
+	private boolean admin; // indica si quien logeo es admin o no
 	private String nombreLocal;
 	private float sueldo;
 	private LocalDatos localdatos;
 	private OperarioAdministrador operarioAdministrador;
+	private ArrayList<String> formasDePago = new ArrayList<String>();
 	private ArrayList<Mesa> mesas = new ArrayList<Mesa>();
 	private ArrayList<Mozo> mozos = new ArrayList<Mozo>();
 	private ArrayList<Factura> facturas = new ArrayList<Factura>();
@@ -47,6 +48,10 @@ public class Local extends Observable {
 		this.nombreLocal = "Local1";
 		this.sueldo = 999;
 		this.admin = false;
+		this.formasDePago.add("Efectivo");
+		this.formasDePago.add("Debito");
+		this.formasDePago.add("MercadoPago");
+		this.formasDePago.add("Cuenta DNI");
 		operarioAdministrador = new OperarioAdministrador(0, "pepe", "01/05/2000", "a1", "a1");
 		this.zonaFacturacion = MetodosFacturacion.getInstance();
 		this.zonaConfSistema = ConfiguracionDeSistema.getInstance();
@@ -86,7 +91,7 @@ public class Local extends Observable {
 	public ArrayList<Mesa> getMesas() {
 		return mesas;
 	}
-	
+
 	public ArrayList<Factura> getFacturas() {
 		return facturas;
 	}
@@ -94,19 +99,19 @@ public class Local extends Observable {
 	public ArrayList<Producto> getProductos() {
 		return productos;
 	}
-	
+
 	public boolean getAdmin() {
 		return admin;
 	}
-	
+
 	public void setAdmin(boolean esAdmin) {
 		this.admin = esAdmin;
 	}
-	
-	//pre-condiciones: mesa != null
+
+	// pre-condiciones: mesa != null
 	public Comanda getComandaByMesa(Mesa mesa) {
 		Comanda comanda = null;
-		int i=0;
+		int i = 0;
 		while (i < comandas.size() && !(comandas.get(i).getMesa().equals(mesa)))
 			i++;
 		if (i < comandas.size()) {
@@ -115,36 +120,72 @@ public class Local extends Observable {
 		return comanda;
 	}
 
-	//precondiciones: nombreUsuario y password != ""
+	// precondiciones: nombreUsuario y password != ""
 	public void login(String nombreUsuario, String password) {
 		this.setChanged();
-		
+
 		int i = 0;
 		if (operarioAdministrador.getNombreUsuario().equals(nombreUsuario)) {
 			if (operarioAdministrador.getPassword().equals(password)) {
 				this.admin = true;
-				this.notifyObservers("LOGIN CORRECTO");	
-			}
-			else {
+				this.notifyObservers("LOGIN CORRECTO");
+			} else {
 				this.notifyObservers("PASSWORD INCORRECTO");
 			}
-		}else {
+		} else {
 			while (i < operarios.size() && !(operarios.get(i).getNombreUsuario().equals(nombreUsuario)))
 				i++;
 			if (i < operarios.size()) {
 
 				if (operarios.get(i).getPassword().equals(password)) {
-					this.notifyObservers("LOGIN CORRECTO");	
+					this.notifyObservers("LOGIN CORRECTO");
 				} else {
 					this.notifyObservers("PASSWORD INCORRECTO");
-				}			
-			}else {
+				}
+			} else {
 				this.notifyObservers("USER INCORRECTO");
 			}
-		}		
+		}
 	}
 
 	public void Logout(Operario operario) {
+	}
+
+	public String getDiaSemana(int numero) {
+		String dia;
+		switch (numero) {
+		case 1: {
+			dia = "Domingo";
+			break;
+		}
+		case 2: {
+			dia = "Lunes";
+			break;
+		}
+		case 3: {
+			dia = "Martes";
+			break;
+		}
+		case 4: {
+			dia = "Miercoles";
+			break;
+		}
+		case 5: {
+			dia = "Jueves";
+			break;
+		}
+		case 6: {
+			dia = "Viernes";
+			break;
+		}
+		case 7: {
+			dia = "Sabado";
+			break;
+		}
+		default:
+			dia = "";
+		}
+		return dia;
 	}
 
 	public ArrayList<PromocionProducto> getPromocionesProductos() {
@@ -155,10 +196,12 @@ public class Local extends Observable {
 		return promocionesTemporales;
 	}
 
-	public ArrayList<Comanda> getComandasActivas() {
+	public ArrayList<Comanda> getComandas() {
 		return comandas;
 	}
 
-
+	public ArrayList<String> getFormasDePago() {
+		return formasDePago;
+	}
 
 }

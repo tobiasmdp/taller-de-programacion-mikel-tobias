@@ -64,6 +64,7 @@ public class VentanaOperarioAdmin extends JFrame implements IVista, MouseListene
 	 */
 	public VentanaOperarioAdmin() {
 		getContentPane().setLayout(new GridLayout(6, 2, 0, 0));
+		setBounds(100, 100, 800, 700);
 		
 		panelArrancaDia = new JPanel();
 		getContentPane().add(panelArrancaDia);

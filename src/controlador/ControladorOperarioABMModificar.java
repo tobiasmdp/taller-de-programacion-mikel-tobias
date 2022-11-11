@@ -50,6 +50,11 @@ public class ControladorOperarioABMModificar implements ActionListener, Observer
 				GestionDePersonal.getInstance().modificaOperario(operario, "nombreUsuario", this.vista.getTxtUsuario().getText());
 				this.vista.actualizaLista();
 			}
+			else if (this.vista.getTxtUsuario().equals("") && this.vista.getTxtPassword().equals("")) {
+				GestionDePersonal.getInstance().modificaOperario(operario, "password", this.vista.getTxtPassword().getText());
+				GestionDePersonal.getInstance().modificaOperario(operario, "nombreUsuario", this.vista.getTxtUsuario().getText());
+				this.vista.actualizaLista();
+			}
 		}
 		else if (comando.equals("VOLVER")) {
 			this.vista.esconder();

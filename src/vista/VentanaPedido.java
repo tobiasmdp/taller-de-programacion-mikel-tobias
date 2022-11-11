@@ -61,6 +61,7 @@ public class VentanaPedido extends JFrame implements IVista{
 	 */
 	public VentanaPedido() {
 		
+		setBounds(100, 100, 800, 700);
 		productos.addAll(Local.getInstance().getProductos());
 		
 		getContentPane().setLayout(new BorderLayout(0, 0));
@@ -99,9 +100,9 @@ public class VentanaPedido extends JFrame implements IVista{
 		this.panelCancelar = new JPanel();
 		this.panelBotones.add(this.panelCancelar);
 		
-		this.btnVolver = new JButton("VOLVER");
+		this.btnVolver = new JButton("Volver");
 		this.panelCancelar.add(this.btnVolver);
-		this.btnAceptar.setActionCommand("VOLVER");
+		this.btnVolver.setActionCommand("VOLVER");
 		
 		this.setVisible(true);
 	}
