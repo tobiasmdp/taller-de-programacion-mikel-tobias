@@ -20,6 +20,7 @@ public class Main {
 		GestionDePersonal.getInstance().altaOperario("pepe", "01/05/2000", "1", "1");
 		
 		
+		
 		Local.getInstance().cargarLocal(nombreArchivo);
 		
 		Local.getInstance().getMesas().add(new Mesa(0));
@@ -30,11 +31,12 @@ public class Main {
 		ConfiguracionDeSistema.getInstance().altaProducto(10, "Pepeya", 400, 500);
 		ConfiguracionDeSistema.getInstance().altaProducto(10, "Papaya", 200, 300);
 		
-		GestionDePersonal.getInstance().altaMozo("Pepe", "mañana", 81);
+		GestionDePersonal.getInstance().altaMozo("Pepe", "maï¿½ana", 81);
 		GestionDePersonal.getInstance().altaMozo("Jhon", "Doe", 2);
+		Local.getInstance().setAdmin(true);
 		ControladorLogin controladorLogin = new ControladorLogin();
 
-	
+		
 	}
 
 }

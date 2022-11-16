@@ -23,6 +23,10 @@ public class PromocionTemporalDTO {
 		this.acumulable = acumulable;
 	}
 
+	public PromocionTemporalDTO() {
+		super();
+	}
+
 	public int getiDPromTemp() {
 		return iDPromTemp;
 	}

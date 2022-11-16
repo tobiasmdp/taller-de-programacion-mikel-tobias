@@ -22,13 +22,12 @@ private static GestionDePersonal instance=null;
 		return instance;
 	}
 	/**
-	 * Se crea un operario
-	 * 
-	 * @param nombreApellido distitnto de null
-	 * @param nacimiento distitnto de null
-	 * @param nombreUsuario distitnto de null
-	 * @param password distitnto de null
-	 */
+	 *  Da de alta un operario
+	 * @param nombreApellido : Parametro de tipo String que representa el nombre y apellido del operario
+	 * @param nacimiento : Parametro de tipo String que representa la fecha de nacimiento del operario
+	 * @param nombreUsuario : Parametro de tipo String que representa el nombre de usuario de la cuenta del operario
+	 * @param password : Parametro de tipo String que representa el passworde de la cuenta del operario
+	 */ 
 	public void altaOperario(String nombreApellido, String nacimiento, String nombreUsuario, String password) {
 		int id;
 		ArrayList<Operario> operarios = Local.getInstance().getOperarios();
@@ -43,20 +42,19 @@ private static GestionDePersonal instance=null;
 	}
 
 	/**
-	 * Se elimina un operario
-	 * 
-	 * @param operario distitnto de null
+	 * Da de baja un operario
+	 * @param operario : Parametro de tipo operario que representa el operario a eliminar
 	 */
 	public void bajaOperario(Operario operario) {
 		Local.getInstance().getOperarios().remove(operario);
 	}
 
 	/**
-	 * Se modifica un operario
-	 * 
-	 * @param operario distitnto de null
-	 * @param accion distitnto de null
-	 * @param valor distitnto de null
+	 * Modifica un parametro de un operario , recibe un String {nombreApellido,nombreUsuario,password,nacimiento} y en base a ello modifica el atributo
+	 * pre: accion!=null
+	 * @param operario : Parametro de tipo operario que representa el operario a modificar
+	 * @param accion : Parametro de tipo String que representa el parametro a modificar
+	 * @param valor : Parametro de tipo String que representa el valor del parametro a modificar
 	 */
 	public void modificaOperario(Operario operario, String accion, String valor) {
 		switch (accion) {
@@ -76,11 +74,10 @@ private static GestionDePersonal instance=null;
 	}
 
 	/**
-	 * Se crea un nuevo mozo
-	 * 
-	 * @param nombreApellido distitnto de null
-	 * @param nacimiento distitnto de null
-	 * @param cantHijos distitnto de null
+	 * Da de alta un mozo y setea el id del mozo con id del ultimo mozo agregado mas 1. Si no hay mozos agregados setea id en 20000
+	 * @param nombreApellido : Parametro que representa el nombre y apellido del mozo
+	 * @param nacimiento : Parametro que representa la fecha de nacimiento del mozo
+	 * @param cantHijos : Parametro que representa la cantidad de hijos del mozo
 	 */
 	public void altaMozo(String nombreApellido, String nacimiento, int cantHijos) {
 		int id;
@@ -94,19 +91,21 @@ private static GestionDePersonal instance=null;
 		Mozo mozo = new Mozo(id, nombreApellido, nacimiento, cantHijos);
 		Local.getInstance().getMozos().add(mozo);
 	}
+	
 	/**
-	 * Se elimina un mozo
-	 * @param mozo distitnto de null
+	 * Da de baja un mozo
+	 * @param mozo : Mozo a eliminar
 	 */
 	public void bajaMozo(Mozo mozo) {
 		Local.getInstance().getMozos().remove(mozo);
 	}
+	
 	/**
-	 * Se modifica un mozo
-	 * 
-	 * @param mozo distitnto de null
-	 * @param accion distitnto de null
-	 * @param valor distitnto de null
+	 * Modifica un parametro de un mozo a excepcion de la cantidad de hijos
+	* pre: acción no puede ser nula y debe ser {“nombreApellido”, “estado”)
+ 	 * @param mozo : Mozo a modificar
+	 * @param accion : String que representa el parametro a modificar
+	 * @param valor : String que representa el valor del parametro a modificar 
 	 */
 	public void modificaMozo(Mozo mozo, String accion, String valor) {
 		switch (accion) {
@@ -120,12 +119,12 @@ private static GestionDePersonal instance=null;
 			//Raise exception;
 		}
 	}
+	
 	/**
-	 * Se modifica la cantidad de hijos de un mozo
-	 * 
-	 * @param mozo distitnto de null
-	 * @param accion distitnto de null
-	 * @param valor distitnto de null
+	 * Modifica la cantidad de hijos de un mozo. En acción debe recibir el String “cantHijos”
+	 * @param mozo : Mozo a modificar
+	 * @param accion : String que representa el parametro a modificar
+	 * @param valor : String que representa el valor del parametro a modificar 
 	 */
 	public void modificaMozo(Mozo mozo, String accion, int valor) {
 		switch (accion) {

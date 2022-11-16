@@ -20,6 +20,13 @@ public class MozoDTO extends PersonaDTO {
 		this.mesasAtentidas = 0;
 	}
 
+	public MozoDTO() {
+	}
+
+	public MozoDTO(int id, String nombreApellido, String nacimiento) {
+		super(id, nombreApellido, nacimiento);
+	}
+
 	public String getEstado() {
 		return estado;
 	}

@@ -14,6 +14,10 @@ public abstract class PersonaDTO {
 		this.nacimiento = nacimiento;
 	}
 
+	public PersonaDTO() {
+		super();
+	}
+
 	public String getNombreApellido() {
 		return nombreApellido;
 	}

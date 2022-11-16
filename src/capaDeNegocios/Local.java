@@ -3,6 +3,7 @@ package capaDeNegocios;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.Objects;
 import java.util.Observable;
 
 import capaDeDatos.AsignacionDiaria;
@@ -22,6 +23,21 @@ import persistencia.LocalDTO;
 import persistencia.PersistenciaXML;
 import persistencia.UtilLocal;
 
+/**
+<b>inv: </b> <br>
+* formasDePago != null <br>
+* mesas != null <br>
+* mozos != null <br>
+* facturas != null <br>
+* promocionesProductos != null <br>
+* promocionesTemporales != null <br>
+* operarios != null <br>
+* operarioAdministrador != null <br>
+* operarioAdministrador nunca es vacío <br>
+* comandas != null <br>
+* productos != null <br>
+* asignacionDiaria != null <br>
+*/
 @SuppressWarnings("deprecation")
 public class Local extends Observable {
 	private static Local instance = null;
@@ -61,7 +77,7 @@ public class Local extends Observable {
 		this.formasDePago.add("Debito");
 		this.formasDePago.add("MercadoPago");
 		this.formasDePago.add("Cuenta DNI");
-		operarioAdministrador = new OperarioAdministrador(0, "pepe", "01/05/2000", "a1", "a1");
+		operarioAdministrador = new OperarioAdministrador(0, "ADMIN", "01/05/2000", "ADMIN", "ADMIN1234");
 		this.zonaFacturacion = MetodosFacturacion.getInstance();
 		this.zonaConfSistema = ConfiguracionDeSistema.getInstance();
 		this.zonaPersonal = GestionDePersonal.getInstance();
@@ -81,6 +97,12 @@ public class Local extends Observable {
 		if (instance == null)
 			instance = new Local();
 		return instance;
+	}
+	
+	public static void elimInstance() {
+		if(instance!=null){
+			instance= null;
+		}
 	}
 
 	public String getNombreLocal() {
@@ -127,11 +149,13 @@ public class Local extends Observable {
 		this.admin = esAdmin;
 	}
 
-	// pre-condiciones: mesa != null
+	
 	
 	/**
+	 * Obtiene una comanda de la lista de comandas a partir de la mesa.
+	 * <b>Pre: </b> mesa != null<br>
 	 * @param mesa no puede ser null
-	 * @return se arma la comanda para la mesa
+	 * @return comanda asociada a la mesa
 	 */
 	public Comanda getComandaByMesa(Mesa mesa) {
 		Comanda comanda = null;
@@ -144,7 +168,13 @@ public class Local extends Observable {
 		return comanda;
 	}
 	
-	// pre-condiciones: mesa != null
+
+	/**
+	 * Obtiene un mozo de la lista de asignaciones diaria a partir de la mesa asignada.
+	 * <b>Pre: </b> mesa != null<br>
+	 * @param mesa no puede ser null
+	 * @return mozo que tiene asignada la mesa
+	 */
 	public Mozo getMozoByMesa(Mesa mesa) {
 		Mozo mozo= null;
 		int i = 0;
@@ -157,7 +187,10 @@ public class Local extends Observable {
 	}
 	
 	
-	//pre: mozos no esta vacia
+	/**
+	 * Obtiene el mozo de la lista de mozos que tiene el maximo acumulado de ventas.
+	 * @return mozo que tiene maximo acumulado de ventas
+	 */
 	public Mozo getMozoMaxVentas() {
 		float max = -1;
 		Mozo mozo= null;
@@ -174,7 +207,10 @@ public class Local extends Observable {
 	}
 
 	
-	//pre: mozos no esta vacia
+	/**
+	 * Obtiene el mozo de la lista de mozos que tiene el minimo acumulado de ventas.
+	 * @return mozo que tiene minimo acumulado de ventas
+	 */
 	public Mozo getMozoMinVentas() {
 		float min = 99999;
 		Mozo mozo= null;
@@ -191,8 +227,9 @@ public class Local extends Observable {
 	}
 	
 	
-	//pre: mozos no esta vacia
+	
 	/**
+	 * Obtiene el mozo de la lista de mozos que tiene el maximo promedio de ventas por mesas atendidas.
 	 * @return el mozo con el promedio maximo
 	 */
 	public Mozo getMozoMaxPromedio() {
@@ -207,8 +244,8 @@ public class Local extends Observable {
 		return mozo;
 	}
 
-	//pre: 
-	/**mozos no esta vacia
+	/**
+	 * Obtiene el mozo de la lista de mozos que tiene el minimo promedio de ventas por mesas atendidas.
 	 * @return el mozo con el promedio minimo
 	 */
 	public Mozo getMozoMinPromedio() {
@@ -223,11 +260,12 @@ public class Local extends Observable {
 		return mozo;
 	}
 	
-	// precondiciones: nombreUsuario y password != ""
 	/**
-	 * Login: el ingreso de todos los operarios
-	 * @param nombreUsuario no puede estar vacio
-	 * @param password no puede estar vacio
+	 * A traves del nombre de usuario y password se verifica que se encuentre registrado como operario administrador o si se encuentra registrado en la lista de operarios.
+	 * Si los datos son validos y no pertenece a ninguno de los dos tipos de operarios, no hace nada.
+	 * Si es operario administrador settea atributo booleano admin de clase Local en true.
+	 * @param nombreUsuario: Parametro de tipo String que representa el nombre de usuario.
+	 * @param password: Parametro de tipo String que representa la contrasenia del usuario.
 	 */
 	public void login(String nombreUsuario, String password) {
 		this.setChanged();
@@ -255,6 +293,7 @@ public class Local extends Observable {
 			}
 		}
 	}
+
 
 	public String getDiaSemana(int numero) {
 		String dia;
@@ -346,4 +385,33 @@ public class Local extends Observable {
 		}
 	}
 
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(asignacionDiaria, comandas, facturas, formasDePago, localdatos, mesas, mozos, nombreLocal,
+				operarios, productos, promocionesProductos, promocionesTemporales, sueldo, zonaConfSistema,
+				zonaFacturacion, zonaPersonal);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Local other = (Local) obj;
+		return Objects.equals(asignacionDiaria, other.asignacionDiaria) && Objects.equals(comandas, other.comandas)
+				&& Objects.equals(facturas, other.facturas) && Objects.equals(formasDePago, other.formasDePago)
+				&& Objects.equals(localdatos, other.localdatos) && Objects.equals(mesas, other.mesas)
+				&& Objects.equals(mozos, other.mozos) && Objects.equals(nombreLocal, other.nombreLocal)
+				&& Objects.equals(operarios, other.operarios) && Objects.equals(productos, other.productos)
+				&& Objects.equals(promocionesProductos, other.promocionesProductos)
+				&& Objects.equals(promocionesTemporales, other.promocionesTemporales)
+				&& Float.floatToIntBits(sueldo) == Float.floatToIntBits(other.sueldo)
+				&& Objects.equals(zonaConfSistema, other.zonaConfSistema)
+				&& Objects.equals(zonaFacturacion, other.zonaFacturacion)
+				&& Objects.equals(zonaPersonal, other.zonaPersonal);
+	}
 }

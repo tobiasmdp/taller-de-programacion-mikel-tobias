@@ -17,6 +17,10 @@ public class ProductoDTO {
 		this.precioVenta = precioVenta;
 	}
 
+	public ProductoDTO() {
+		super();
+	}
+
 	public int getStock() {
 		return stock;
 	}

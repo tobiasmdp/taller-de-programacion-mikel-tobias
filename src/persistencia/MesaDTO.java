@@ -12,6 +12,10 @@ public class MesaDTO {
 		this.estado = "Libre"; //"Libre", "Ocupada"
 	}
 
+	public MesaDTO() {
+		super();
+	}
+
 	public int getId() {
 		return id;
 	}

@@ -108,7 +108,11 @@ public class VentanaLogin extends JFrame implements IVista, MouseListener{
 		this.btnIngreso.addMouseListener(this);
 		btnIngreso.setVerticalAlignment(SwingConstants.TOP);
 		panelBoton.add(btnIngreso);
-		
+		lblErrorUsuario.setName("labelErrorUsuario");
+		lblErrorPassword.setName("labelErrorContrasenia");
+		btnIngreso.setName("botonIngreso");
+		txtPassword.setName("textPassword");
+		txtUsuario.setName("textUsuario");
 		this.setVisible(true);
 	}
 

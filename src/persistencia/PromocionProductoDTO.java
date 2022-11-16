@@ -27,6 +27,10 @@ public PromocionProductoDTO( ProductoDTO producto, String diaProm, boolean dosXu
 	this.activa = activa;
 }
 
+public PromocionProductoDTO() {
+	super();
+}
+
 public int getCantidadMinima() {
 	return cantidadMinima;
 }

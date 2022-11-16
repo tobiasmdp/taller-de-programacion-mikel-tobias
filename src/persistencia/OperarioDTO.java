@@ -14,6 +14,12 @@ public class OperarioDTO extends PersonaDTO {
 		this.activo = true;
 	}
 
+	public OperarioDTO(int id, String nombreApellido, String nacimiento) {
+		super(id, nombreApellido, nacimiento);
+	}
+	public OperarioDTO() {
+		
+	}
 	public String getNombreUsuario() {
 		return nombreUsuario;
 	}

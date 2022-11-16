@@ -30,7 +30,9 @@ public class ConfiguracionDeSistema {
 	}
 	
 	/**
-	 *  Se crea una nueva mesa
+	 * Se da de alta una mesa en la lista de mesas del sistema. Si la lista de mesas del sistema esta vacia se le agrega como 
+	 * id al producto el prefijo de mesas del local. Si la lista tiene al menos 1 mesa, se le suma 1 al id de la ultima mesa de la lista. 
+	 * 
 	 */
 	public void altaMesa() {
 		int id;
@@ -47,9 +49,9 @@ public class ConfiguracionDeSistema {
 	}
 	
 	/**
-	 * Se elimina una mesa
+	 * Se elimina una mesa pasada por parametro de la lista de mesas
 	 * 
-	 * @param mesa distinto de null
+	 * @param mesa: Parametro de tipo mesa a eliminar
 	 */
 	public void bajaMesa(Mesa mesa) {
 		Local.getInstance().getMesas().remove(mesa);
@@ -57,10 +59,10 @@ public class ConfiguracionDeSistema {
 	
 	/**
 	 * 
-	 * Se modifica una mesa (no se usa)
-	 * @param mesa distinto de null
-	 * @param accion distinto de null
-	 * @param valor distinto de null
+	 * Se modifica una mesa de acuerdo a la accion especificada y se settea con parámetro valor. Accion permitida es "comensales", en otro caso, no hace nada. Valor debería ser un entero mayor a cero.
+	 * @param mesa: Parametro de tipo mesa a modificar
+	 * @param accion: Parametro tipo String que indica tipo de modificacion de mesa a realizar.
+	 * @param valor: Parametro tipo entero que indica la cantidad de comensales de la mesa a settear.
 	 */
 	public void modificaMesa(Mesa mesa, String accion, int valor) {
 		switch (accion) {
@@ -74,10 +76,10 @@ public class ConfiguracionDeSistema {
 	
 	/**
 	 * 
-	 * Se modifica el estado de una mesa
-	 * @param mesa distinto de null
-	 * @param accion distinto de null
-	 * @param valor distinto de null
+	 * Se modifica el estado de una mesa y se settea con el valor pasado por parametro. La accion debería ser estado, en otro caso. 
+	 * @param mesa: Parametro de tipo mesa distinto de null
+	 * @param accion: Parametro tipo String que indica tipo de modificacion de mesa a realizar.
+	 * @param valor: Parametro tipo entero que indica la cantidad de comensales de la mesa a settear.
 	 */
 	public void modificaMesa(Mesa mesa, String accion, String valor) {
 		switch (accion) {
@@ -90,12 +92,14 @@ public class ConfiguracionDeSistema {
 	}
 	
 	/**
-	 * Se crea un nuevo producto
+	 * Se da de alta un producto en la lista de productos del sistema. Si la lista de productos del sistema esta vacia se le agrega como 
+	 * id al producto el prefijo de producto del local. Si la lista tiene al menos 1 producto, se le suma 1 al id del ultimo
+	 * producto de la lista. 
 	 * 
-	 * @param stock distinto de null
-	 * @param nombre distinto de null
-	 * @param precioCosto distinto de null
-	 * @param precioVenta distinto de null
+	 * @param stock: Parametro de tipo entero que representa el stock inicial del producto
+	 * @param nombre: Parametro de tipo string que representa el nombre del producto.
+	 * @param precioCosto: Parametro de tipo float que representa el precio de costo del producto.
+	 * @param precioVenta: Parametro de tipo float que representa el precio de venta del producto.
 	 */
 	public void altaProducto(int stock, String nombre, float precioCosto, float precioVenta) {
 		int id;
@@ -112,19 +116,19 @@ public class ConfiguracionDeSistema {
 	}
 	
 	/**
-	 * Se elimina un producto
+	 * Se elimina un producto pasado por parametro de la lista de productos.
 	 * 
-	 * @param producto distinto de null
+	 * @param producto: Parametro de tipo producto a eliminar.
 	 */
 	public void bajaProductos(Producto producto) {
 		Local.getInstance().getProductos().remove(producto);
 	}
 	
 	/**  
-	 * Se modifica el stock de un producto
-	 * @param producto distinto de null
-	 * @param accion distinto de null
-	 * @param valor distinto de null
+	 * Se modifica el stock de un producto pasado por parametro. La accion debería ser stock. valor debería ser un valor mayor o igual a 0.
+	 * @param producto: Parametro de tipo Producto a modificar.
+	 * @param accion: Parametro de tipo string que indica atributo a modificar.
+	 * @param valor: Parametro de tipo entero que indica el valor del atributo a modificar.
 	 */
 	public void modificaProducto(Producto producto, String accion, int valor) {
 		switch (accion) {
@@ -136,10 +140,10 @@ public class ConfiguracionDeSistema {
 		}
 	}
 	
-	/** Se modifican el nombre de los productos
-	 * @param producto distinto de null
-	 * @param accion distinto de null
-	 * @param valor distinto de null
+	/** Se modifican el nombre del producto pasado por parametro. La accion deberia ser nombre, en otro caso, no hace nada. valor debería ser distinto de null.
+	 * @param producto: Parametro de tipo Producto a modificar.
+	 * @param accion: Parametro de tipo string que indica atributo a modificar.
+	 * @param valor: Parametro de tipo String que indica el valor del atributo a modificar.
 	 */
 	public void modificaProducto(Producto producto, String accion, String valor) {
 		switch (accion) {
@@ -150,10 +154,11 @@ public class ConfiguracionDeSistema {
 		//	Raise exception;
 		}
 	}
-	/** Se modifican los precios de los productos
-	 * @param producto distinto de null
-	 * @param accion distinto de null
-	 * @param valor distinto de null
+	
+	/** Se modifican los precios del producto pasado por parametro. La accion debería ser precioCosto o precioVenta. valor deberia ser mayor a 0.
+	 * @param producto: Parametro de tipo Producto a modificar.
+	 * @param accion: Parametro de tipo string que indica atributo a modificar.
+	 * @param valor: Parametro de tipo float que indica el valor del atributo a modificar.
 	 */
 	public void modificaProducto(Producto producto, String accion, float valor) {
 		switch (accion) {

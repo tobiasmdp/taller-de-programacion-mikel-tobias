@@ -30,15 +30,17 @@ public class MetodosFacturacion {
 	}
 
 	/**
-	 * Se crea la promocion de los productos
+	 * Se crea la promocion de un producto de la lista de productos y se agrega a lista de productos del sistema. 
+	 * diaProm deberia ser un dia de la semana. cantidadMinima deberia ser mayor a 0.
+	 * descCantMin deberia ser mayor a 0.
 	 * 
-	 * @param producto distinto de null
-	 * @param diaProm distinto de null
-	 * @param dosXuno distinto de null
-	 * @param descuentoCantMin distinto de null
-	 * @param cantidadMinima distinto de null
-	 * @param descCantMin distinto de null
-	 * @param activa distinto de null
+	 * @param producto: Parametro de tipo Producto que representa producto del cual se hara promocion.
+	 * @param diaProm: Parametro de tipo String que indica el dia de la semana que es valida la promocion.
+	 * @param dosXuno: Parametro de tipo boolean que indica si la promocion incluye 2x1.
+	 * @param descuentoCantMin: Parametro de tipo boolean que indica si la promocion incluye descuento de acuerdo a una cantidad minima.
+	 * @param cantidadMinima: Parametro de tipo entero que indica la cantidad minima a partir de la cual se aplica la promocion.
+	 * @param descCantMin: Parametro de tipo float que indica el porcentaje de descuento por cantidad minima.
+	 * @param activa: Parametro de tipo boolean que indica si la promocion se encuentra activa o no.
 	 */
 	public void altaPromocionProducto(Producto producto, String diaProm, boolean dosXuno, boolean descuentoCantMin,
 			int cantidadMinima, float descCantMin, boolean activa) {
@@ -48,24 +50,26 @@ public class MetodosFacturacion {
 	}
 	
 	/**
-	 * Se elimina la promocion de los productos
+	 * Se elimina la promocion de la lista de promociones de producto. Si promocion no esta en la lista, no hace nada.
 	 * 
-	 * @param prom distinto de null
+	 * @param prom: Parametro de tipo PromocionProducto a eliminar de la lista.
 	 */
 	public void bajaPromocionProducto(PromocionProducto prom) {
 		Local.getInstance().getPromocionesProductos().remove(prom);
 	}
 
 	/**
-	 * Se modifican todos los parametros de la promocion de los productos
+	 * Se modifican todos los parametros de la promocion de producto pasada por parametro.
+	 * diaProm deberia ser un dia de la semana. cantidadMinima deberia ser mayor a 0.
+	 * descCantMin deberia ser mayor a 0.
 	 * 
-	 * @param prom distinto de null
-	 * @param diaProm distinto de null
-	 * @param dosXuno distinto de null
-	 * @param descuentoCantMin distinto de null
-	 * @param porcentajeCantMin distinto de null
-	 * @param cantidadMinima distinto de null
-	 * @param activa distinto de null
+	 * @param prom: Parametro de tipo Promocion que representa la promocion del cual se modificaran los atributos.
+	 * @param diaProm: Parametro de tipo String que indica el dia de la semana que es valida la promocion.
+	 * @param dosXuno: Parametro de tipo boolean que indica si la promocion incluye 2x1.
+	 * @param descuentoCantMin: Parametro de tipo boolean que indica si la promocion incluye descuento de acuerdo a una cantidad minima.
+	 * @param porcentajeCantMin: Parametro de tipo Float que indica el porcentaje de descuento que se aplica a promociones tipo descuentoCantMin
+	 * @param cantidadMinima: Parametro de tipo entero que indica la cantidad minima a partir de la cual se aplica la promocion.
+	 * @param activa: Parametro de tipo boolean que indica si la promocion se encuentra activa o no.
 	 */
 	public void modificacionPromocionProducto(PromocionProducto prom, String diaProm, boolean dosXuno,
 			boolean descuentoCantMin, float porcentajeCantMin, int cantidadMinima, boolean activa) {
@@ -78,14 +82,18 @@ public class MetodosFacturacion {
 	}
 
 	/**
-	 * Se crea una nueva promocion temporal
+	 * Se crea y da de alta una nueva promocion temporal a la lista de promociones temporales. 
+	 * porcentajeDesc deberia ser mayor a 0
+	 * diasDePromo deberia indicar los dias de la semana.
+	 * activa deberia ser true o false.
+	 * acumulable deberia ser true o false.
 	 * 
-	 * @param nombre distinto de null
-	 * @param formaPago distinto de null
-	 * @param porcentajeDesc distinto de null
-	 * @param diasDePromo distinto de null
-	 * @param activa distinto de null
-	 * @param acumulable distinto de null
+	 * @param nombre: parametro de tipo String que indica el nombre de la nueva promocion temporal.
+	 * @param formaPago: parametro de tipo String que indica forma de pago.
+	 * @param porcentajeDesc: parametro de tipo entero que indica porcentaje de descuento.
+	 * @param diasDePromo: parametro de tipo String que indica dias de promocion.
+	 * @param activa: parametro de tipo Boolean que indica si promocion esta activa o no.
+	 * @param acumulable: parametro de tipo boolean que indica si es acumulable con otras promociones.
 	 */
 	public void altaPromocionTemporal(String nombre, String formaPago, int porcentajeDesc, String diasDePromo,
 			boolean activa, boolean acumulable) {
@@ -95,24 +103,27 @@ public class MetodosFacturacion {
 	}
 	
 	/**
-	 * Se elimina una promocion temporal
+	 * Se elimina una promocion temporal de la lista de promociones temporales. 
 	 * 
-	 * @param prom distinto de null
+	 * @param prom: Parametro de tipo PromocionTemporal a eliminar.
 	 */
 	public void bajaPromocionTemporal(PromocionTemporal prom) {
 		Local.getInstance().getPromocionesTemporales().remove(prom);
 	}
 
 	/**
-	 * Se modifica una promocion temporal
+	 * Se modifican todos los parametros de la promocion temporal pasada por parametro.
+	 * porcentajeDesc deberia ser mayor a 0
+	 * diasDePromo deberia indicar los dias de la semana.
+	 * activa deberia ser true o false.
+	 * acumulable deberia ser true o false.
 	 * 
-	 * @param prom distinto de null
-	 * @param nombre distinto de null
-	 * @param formaPago distinto de null
-	 * @param porcentajeDesc distinto de null
-	 * @param diasDePromo distinto de null
-	 * @param activa distinto de null
-	 * @param acumulable distinto de null
+	 * @param nombre: parametro de tipo String que indica el nombre de la nueva promocion temporal.
+	 * @param formaPago: parametro de tipo String que indica forma de pago.
+	 * @param porcentajeDesc: parametro de tipo entero que indica porcentaje de descuento.
+	 * @param diasDePromo: parametro de tipo String que indica dias de promocion.
+	 * @param activa: parametro de tipo Boolean que indica si promocion esta activa o no.
+	 * @param acumulable: parametro de tipo boolean que indica si es acumulable con otras promociones.
 	 */
 	public void modificacionPromocionTemporal(PromocionTemporal prom, String nombre, String formaPago,
 			int porcentajeDesc, String diasDePromo, boolean activa, boolean acumulable) {
@@ -125,13 +136,17 @@ public class MetodosFacturacion {
 	}
 
 	/**
-	 * Se genera una factura
+	 * Se genera una factura. Se pasa como parametro la comanda a cerrar a partir de la cual se calculara el total de la factura y a mesa a cambiar de estado. Se indica el metodo de pago, fecha y dia de la semana.
+	 * A partir de la lista de pedidos de la comanda se calcula el total. De la lista de pedidos se obtienen los productos.
+	 * Se verifica que los productos se encuentren o no en la lista de promociones temporales y/o en la lista de promociones de producto.
+	 * A traves de la mesa de la comanda se obtiene el mozo asignado a la misma. Al mozo se le actualiza el acumulado y se le aumenta en 1 la cantidad de mesas atendidas.
 	 * 
-	 * @param fecha distinto de null, la fecha del dia
-	 * @param diaSemana distinto de null, el dia en que se hizo la factura
-	 * @param comanda distinto de null
-	 * @param metodoDePago distinto de null
-	 * @return la factura generada
+	 * <b>Pre: </b> comanda != null<br>
+	 * @param fecha: Parametro de tipo Calendar que indica la fecha del sistema.
+	 * @param diaSemana: Parametro de tipo String que indica el dia de la semana que se emitio la factura.
+	 * @param comanda: Parametro de tipo comanda que indica la comanda a cerrar y a partir de la cual se obtendran los datos para cerrar la factura.
+	 * @param metodoDePago: Parametro de tipo String que indica el metodo de pago de la factura.
+	 * @return Factura generada
 	 */
 	public Factura generacionDeFactura(Calendar fecha, String diaSemana, Comanda comanda, String metodoDePago) {
 		Factura aux;
@@ -198,14 +213,17 @@ public class MetodosFacturacion {
 				promsProducto);
 	}
 
-	// precondicion: la cantidad es positiva
+	
 	/**
-	 * Se crea un pedido
+	 * Se crea y da de alta un pedido a la lista de pedidos si la cantidad pedida de ese producto esta disponible.
+	 * Se actualiza el stock del producto pedido.
 	 * 
-	 * @param hoy distinto de null
-	 * @param cantidad distinto de null, y positivo
-	 * @param producto distinto de null
-	 * @return el nuevo pedido, de no ser asi no se 
+	 * <b>Pre: </b> producto != null<br>
+	 * <b>Pre: </b> cantidad > 0<br>
+	 * @param hoy: Parametro de tipo String convertido de un GregorianCalendar.
+	 * @param cantidad: Parametro de tipo int que representa la cantidad del producto pedido
+	 * @param producto: Parametro de tipo Producto que representa el producto pedido
+	 * @return el nuevo pedido o null en caso de que no haya stock suficiente.
 	 */
 	public Pedido altaPedido(String hoy, int cantidad, Producto producto) {
 		Pedido nuevo = null;
@@ -217,20 +235,24 @@ public class MetodosFacturacion {
 	}
 
 	/**
-	 * Se da de baja un pedido
-	 * @param comanda distinto de null
-	 * @param pedido distinto de null
+	 * Se da de baja un pedido de la lista de pedidos de una comanda.
+	 * @param comanda: Parametro de tipo comanda de la cual se da de baja el pedido.
+	 * @param pedido: Parametro de tipo pedido que indica pedido que se da de baja de la lista de una comanda.
 	 */
 	public void bajaPedido(Comanda comanda, Pedido pedido) {
 		comanda.getListaPedidos().remove(pedido);
 	}
 
 	/**
-	 * Se crea una comanda
+	 * Se crea y se da de alta una nueva comanda como activa en la lista de comandas del local.
+
 	 * 
-	 * @param mesa distinto de null, tiene que estar libre
-	 * @param pedido distinto de null 
-	 * @return nueva comanda
+	 * <b>Pre: </b> mesa != null<br>
+	 * <b>Pre: </b> pedido != null<br>
+	 *
+	 * @param mesa: Parametro de tipo Mesa a la cual se le asignara la comanda.
+	 * @param pedido: Parametro de tipo Pedido que indica pedido inicial de la comanda.
+	 * @return nueva instancia de Comanda 
 	 */
 	public Comanda altaComanda(Mesa mesa, Pedido pedido) {
 		Comanda nuevo = new Comanda(mesa, pedido, true);
@@ -256,6 +278,15 @@ public class MetodosFacturacion {
 		return generacionDeFactura(ahora, diaSemana, comanda, metodoDePago);
 	}
 
+	
+	/**
+	 * Se agrega o se remueve un pedido de la lista de pedidos de la comanda.
+	 * <b>Pre: </b> comanda != null<br>
+	 * <b>Pre: </b> pedido != null<br>
+	 * @param comanda: Parametro de tipo Comanda que representa la comanda de la cual se actualizara la lista de pedidos.
+	 * @param pedido: Parametro de tipo Pedido que representa el pedido a dar de alta o baja de la lista de pedidos de la comanda.
+	 * @param agregar: Parametro de tipo boolean que representa accion a realizar.
+	 */
 	public void modificacionComanda(Comanda comanda, Pedido pedido, boolean agregar) {
 		int pos = Local.getInstance().getComandas().indexOf(comanda);
 		if (agregar)
@@ -263,5 +294,4 @@ public class MetodosFacturacion {
 		else
 			Local.getInstance().getComandas().get(pos).getListaPedidos().remove(pedido);
 	}
-
 }

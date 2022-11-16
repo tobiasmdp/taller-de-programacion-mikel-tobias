@@ -54,4 +54,17 @@ public class ControladorLogin implements ActionListener, Observer {
 		}
 
 	}
+
+	public Operario getOperario() {
+		return operario;
+	}
+
+	public int getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public VentanaLogin getVista() {
+		return vista;
+	}
+	
 }
