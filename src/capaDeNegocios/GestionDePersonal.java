@@ -102,7 +102,7 @@ private static GestionDePersonal instance=null;
 	
 	/**
 	 * Modifica un parametro de un mozo a excepcion de la cantidad de hijos
-	* pre: acción no puede ser nula y debe ser {“nombreApellido”, “estado”)
+	 * pre: accion no puede ser nula y debe ser nombreApellido, estado
  	 * @param mozo : Mozo a modificar
 	 * @param accion : String que representa el parametro a modificar
 	 * @param valor : String que representa el valor del parametro a modificar 
@@ -121,7 +121,7 @@ private static GestionDePersonal instance=null;
 	}
 	
 	/**
-	 * Modifica la cantidad de hijos de un mozo. En acción debe recibir el String “cantHijos”
+	 * Modifica la cantidad de hijos de un mozo. En acción debe recibir el String cantHijos
 	 * @param mozo : Mozo a modificar
 	 * @param accion : String que representa el parametro a modificar
 	 * @param valor : String que representa el valor del parametro a modificar 
